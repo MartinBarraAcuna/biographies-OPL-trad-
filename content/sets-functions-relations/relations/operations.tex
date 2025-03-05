@@ -1,0 +1,53 @@
+% Part: sets-functions-relations
+% Chapter: relations
+% Section: operations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{rel}{ops}
+\olsection{Operaciones sobre relaciones}
+
+A menudo es útil modificar o combinar relaciones. En \olref[sfr][rel][ord]{prop:stricttopartial}, consideramos la \emph{unión} de relaciones, que es simplemente la unión de dos relaciones consideradas como conjuntos de pares. De manera similar, en \olref[sfr][rel][ord]{prop:partialtostrict}, consideramos la diferencia relativa de relaciones. Aquí hay algunas otras operaciones que podemos realizar en las relaciones.
+
+\begin{defn}\ollabel{relationoperations}
+Sean $R$, $S$ relaciones, y $A$ cualquier conjunto.
+
+La \emph{inversa} de $R$ es $R^{-1} = \Setabs{\tuple{y, x}}{\tuple{x, y} \in R}$.
+
+El \emph{producto relativo} de $R$ y $S$ es $(R \mid S) = \{\tuple{x, z} : \exists y(Rxy \land Syz)\}$.
+
+La \emph{restricción} de $R$ a $A$ es $\funrestrictionto{R}{A}= R \cap A^2$.
+
+La \emph{aplicación} de $R$ a $A$ es $\funimage{R}{A} = \{y : (\exists x \in A)Rxy\}$
+\end{defn}
+
+\begin{ex}
+Sea $S \subseteq \Int^2$ la relación sucesor en~$\Int$, es decir, $S = \Setabs{\tuple{x, y} \in \Int^2}{x + 1 = y}$, de modo que $Sxy$ si y solo si $x + 1 = y$.
+
+$S^{-1}$ es la relación predecesor en $\Int$, es decir, $\Setabs{\tuple{x,y}\in\Int^2}{x -1 =y}$.
+
+$S\mid S$ es $\Setabs{\tuple{x,y}\in\Int^2}{x + 2 =y}$
+
+$\funrestrictionto{S}{\Nat}$ es la relación sucesor en~$\Nat$.
+
+$\funimage{S}{\{1,2,3\}}$ es $\{2, 3, 4\}$.
+\end{ex}
+
+\begin{defn}[Cierre transitivo]Sea $R \subseteq A^2$ una relación binaria.
+
+El \emph{cierre transitivo} de~$R$ es $R^+ = \bigcup_{0 < n \in \Nat} R^n$, donde definimos recursivamente $R^1 = R$ y $R^{n+1} = R^n \mid R$.
+
+El \emph{cierre reflexivo transitivo} de $R$ es $R^* = R^+ \cup \Id{A}$.
+\end{defn}
+
+\begin{ex}
+Toma la relación sucesor $S \subseteq \Int^2$. $S^2xy$ si y solo si $x + 2 = y$, $S^3xy$ si y solo si $x + 3 = y$, etc. Entonces $S^+xy$ si y solo si $x + n = y$ para algún $n \geq 1$. En otras palabras, $S^+xy$ si y solo si $x < y$, y $S^*xy$ si y solo si $x \le y$.
+\end{ex}
+
+\begin{prob}
+Demuestra que el cierre transitivo de $R$ es de hecho transitivo.
+\end{prob}
+
+\end{document}

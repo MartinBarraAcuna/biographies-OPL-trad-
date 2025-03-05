@@ -1,0 +1,80 @@
+% Part: sets-functions-relations
+% Chapter: functions
+% Section: basics
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{fun}{bas}
+\olsection{Fundamentos}
+
+\begin{explain}
+Una \emph{función} es una aplicación que envía cada !!{elemento} de un conjunto dado a un !!{elemento} específico en algún (otro) conjunto dado. Por ejemplo, la operación de sumar~$1$ define una función: cada número~$n$ se mapea a un número único~$n+1$.
+  
+Más generalmente, las funciones pueden tomar pares, triples, etc., como entradas y devolver algún tipo de salida. Muchas funciones nos son familiares de la aritmética básica. Por ejemplo, la suma y la multiplicación son funciones. Toman dos números y devuelven un tercero.
+
+En este sentido matemático y abstracto, una función es una \emph{caja negra}: lo que importa es solo qué salida se empareja con qué entrada, no el método para calcular la salida.
+\end{explain}
+
+\begin{defn}[Función]
+Una \emph{función} $f \colon A \to B$ es una aplicación de cada !!{elemento} de~$A$ a un !!{elemento} de~$B$.
+
+Llamamos a $A$ el \emph{dominio} de~$f$ y a $B$ el \emph{codominio} de~$f$. Los !!{elementos} de~$A$ se llaman entradas o \emph{argumentos} de~$f$, y el !!{elemento} de~$B$ que se empareja con un argumento~$x$ mediante~$f$ se llama el \emph{valor de~$f$} para el argumento~$x$, escrito~$f(x)$.
+
+El \emph{rango} $\ran{f}$ de~$f$ es el subconjunto del codominio que consiste en los valores de~$f$ para algún argumento; $\ran{f} = \Setabs{f(x)}{x \in A}$.
+\end{defn}
+
+El diagrama en \olref{fig:function} puede ayudar a pensar en las funciones. La elipse de la izquierda representa el \emph{dominio} de la función; la elipse de la derecha representa el \emph{codominio} de la función; y una flecha apunta desde un \emph{argumento} en el dominio hasta el \emph{valor} correspondiente en el codominio.
+
+\begin{figure}
+  \olasset{assets/diagrams/function.tikz}
+  \caption{Una función es una aplicación de cada !!{elemento} de un conjunto a un !!{elemento} de otro. Una flecha apunta desde un argumento en el dominio hasta el valor correspondiente en el codominio.}
+  \ollabel{fig:function}
+\end{figure}
+
+\begin{ex}
+La multiplicación toma pares de números naturales como entradas y los mapea a números naturales como salidas, por lo que va de $\Nat \times \Nat$ (el dominio) a $\Nat$ (el codominio). Resulta que el rango también es $\Nat$, ya que cada $n \in \Nat$ es $n \times 1$.
+\end{ex}
+
+\begin{ex}
+La multiplicación es una función porque empareja cada entrada—cada par de números naturales—con una sola salida: $\times \colon \Nat^2 \to \Nat$. Por el contrario, la operación de raíz cuadrada aplicada al dominio $\Nat$ no es funcional, ya que cada entero positivo $n$ tiene dos raíces cuadradas: $\sqrt{n}$ y $-\sqrt{n}$. Podemos hacerla funcional devolviendo solo la raíz cuadrada positiva: $\sqrt{\phantom{X}} \colon \Nat \to \Real$.
+\end{ex}
+
+\begin{ex}
+La relación que empareja a cada estudiante en una clase con su calificación final es una función; ningún estudiante puede obtener dos calificaciones finales diferentes en la misma clase. La relación que empareja a cada estudiante en una clase con sus padres no es una función: los estudiantes pueden tener cero, dos o más padres.
+\end{ex}
+
+\begin{explain}
+Podemos definir funciones especificando de alguna manera precisa cuál es el valor de la función para cada argumento posible. Diferentes formas de hacer esto son dando una fórmula, describiendo un método para calcular el valor o enumerando los valores para cada argumento. Sin embargo, se definan las funciones, debemos asegurarnos de que para cada argumento especifiquemos uno, y solo un, valor.
+\end{explain}
+
+\begin{ex}
+Sea $f \colon \Nat \to \Nat$ definida tal que $f(x) = x+1$. Esta es una definición que especifica $f$ como una función que toma números naturales y produce números naturales. Nos dice que, dado un número natural~$x$, $f$ producirá su sucesor~$x+1$. En este caso, el codominio $\Nat$ no es el rango de~$f$, ya que el número natural~$0$ no es el sucesor de ningún número natural. El rango de~$f$ es el conjunto de todos los enteros positivos, $\Int^{+}$.
+\end{ex}
+
+\begin{ex}\ollabel{examplefunext}
+Sea $g \colon \Nat \to \Nat$ definida tal que $g(x) = x+2-1$. Esto nos dice que $g$ es una función que toma números naturales y produce números naturales. Dado un número natural~$n$, $g$ producirá el predecesor del sucesor del sucesor de~$x$, es decir, $x+1$.
+\end{ex}
+
+\begin{explain}
+Acabamos de considerar dos funciones, $f$ y $g$, con diferentes \emph{definiciones}. Sin embargo, estas son la \emph{misma función}. Después de todo, para cualquier número natural~$n$, tenemos que $f(n) = n+1 = n+2-1 = g(n)$. En otras palabras: nuestras definiciones para $f$ y~$g$ especifican la misma aplicación mediante diferentes ecuaciones. Implícitamente, entonces, estamos confiando en un principio de extensionalidad para las funciones,
+\[
+  \text{si }\forall x\, f(x) = g(x)\text{, entonces }f = g
+\]
+siempre que $f$ y~$g$ compartan el mismo dominio y codominio.
+\end{explain}
+
+\begin{ex}
+También podemos definir funciones por casos. Por ejemplo, podríamos definir $h \colon \Nat \to \Nat$ por
+\[
+h(x) =
+\begin{cases}
+  \frac{x}{2} & \text{si $x$ es par} \\
+  \frac{x+1}{2} & \text{si $x$ es impar.}
+\end{cases}
+\]
+Dado que cada número natural es par o impar, la salida de esta función siempre será un número natural. Solo recuerda que si defines una función por casos, cada entrada posible debe caer en exactamente un caso. En algunos casos, esto requerirá una prueba de que los casos son exhaustivos y exclusivos.
+\end{ex}
+
+\end{document}

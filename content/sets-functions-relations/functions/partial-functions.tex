@@ -1,0 +1,63 @@
+% Part: sets-functions-relations
+% Chapter: functions
+% Section: partial-functions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+
+\begin{document}
+
+\olfileid{sfr}{fun}{par}
+
+\olsection{Funciones Parciales}
+
+\begin{explain}
+A veces es útil relajar la definición de función para que no se
+requiera que la salida de la función esté definida para todas las
+entradas posibles. Tales mapeos se denominan \emph{funciones parciales}.
+\end{explain}
+
+\begin{defn}
+Una \emph{función parcial} $f \colon A \pto B$ es un mapeo que
+asigna a cada !!{elemento} de~$A$ como máximo un !!{elemento} de~$B$.
+Si $f$ asigna un elemento de~$B$ a $x \in A$, decimos que $f(x)$ está
+\emph{definido}, y de lo contrario \emph{indefinido}. Si $f(x)$ está definido,
+escribimos $f(x) \fdefined$, de lo contrario $f(x) \fundefined$. El
+\emph{dominio} de una función parcial~$f$ es el subconjunto de~$A$ donde está
+definido, es decir, $\dom{f} = \Setabs{x \in A}{f(x) \fdefined}$.
+\end{defn}
+
+\begin{ex}
+Cada función $f\colon A \to B$ es también una función parcial. Las
+funciones parciales que están definidas en todas partes en~$A$---es decir, lo que
+hasta ahora hemos llamado simplemente una función---también se denominan funciones \emph{totales}.
+\end{ex}
+
+\begin{ex}
+La función parcial $f \colon \Real \pto \Real$ dada por $f(x) = 1/x$
+está indefinida para $x = 0$, y definida en todas partes.
+\end{ex}
+
+\begin{prob}
+Dado $f\colon A \pto B$, define la función parcial $g\colon B \pto
+A$ por: para cualquier $y \in B$, si existe un único $x \in A$ tal que
+$f(x) = y$, entonces $g(y) = x$; de lo contrario $g(y) \fundefined$. Demuestra que si $f$ es inyectiva, entonces $g(f(x)) = x$ para todo $x \in \dom{f}$, y $f(g(y)) = y$ para todo $y \in \ran{f}$.
+\end{prob}
+
+\begin{defn}[Gráfica de una función parcial]
+Sea $f\colon A \pto B$ una función parcial. La \emph{gráfica} de~$f$
+es la relación $R_f \subseteq A \times B$ definida por
+\[
+R_f = \Setabs{\tuple{x,y}}{f(x) = y}.
+\]
+\end{defn}
+
+\begin{prop}
+Supongamos que $R \subseteq A \times B$ tiene la propiedad de que siempre que $Rxy$ y $Rxy'$, entonces $y = y'$. Entonces $R$ es la gráfica de la función parcial $f\colon X \pto Y$ definida por: si existe un $y$ tal que $Rxy$, entonces $f(x) = y$, de lo contrario $f(x) \fundefined$. Si $R$ es también \emph{serial}, es decir, para cada $x \in X$ existe un $y \in Y$ tal que $Rxy$, entonces $f$ es total.
+\end{prop}
+
+\begin{proof}
+Supongamos que existe un $y$ tal que $Rxy$. Si existiera otro $y' \neq y$ tal que $Rxy'$, la condición sobre $R$ se violaría. Por lo tanto, si existe un $y$ tal que $Rxy$, ese $y$ es único, y por lo tanto $f$ está bien definida. Obviamente, $R_f = R$ y $f$ es total si~$R$ es serial.
+\end{proof}
+
+\end{document}

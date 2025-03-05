@@ -1,0 +1,63 @@
+% Part: sets-functions-relations
+% Chapter: sets
+% Section: basics
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{set}{bas}
+\olsection{Extensionalidad}
+
+Un \emph{conjunto} es una colección de objetos, considerada como un único objeto. Los objetos que componen el conjunto se llaman \emph{elementos} o \emph{miembros} del conjunto. Si $x$ es un elemento de un conjunto~$A$, escribimos $x \in A$; si no, escribimos $x \notin A$. El conjunto que no tiene elementos se llama el conjunto \emph{vacío} y se denota ``$\emptyset$''.
+
+\begin{explain}
+No importa cómo \emph{especifiquemos} el conjunto, ni cómo \emph{ordenemos} sus elementos, ni de hecho \emph{cuántas veces} contemos sus elementos. Todo lo que importa es cuáles son sus elementos. Codificamos esto en el siguiente principio.
+\end{explain}
+
+\begin{defn}[Extensionalidad]
+ Si $A$ y $B$ son conjuntos, entonces $A = B$ si y solo si
+ todo elemento de~$A$ es también elemento de~$B$, y viceversa.
+\end{defn}
+
+La extensionalidad permite cierta notación. En general, cuando tenemos algunos objetos $a_{1}$, \dots, $a_{n}$, entonces $\{a_{1}, \dots, a_{n}\}$ es \emph{el} conjunto cuyos elementos son $a_1, \ldots, a_n$. Enfatizamos la palabra ``\emph{el}'', ya que la extensionalidad nos dice que solo puede haber \emph{un} conjunto así. De hecho, la extensionalidad también permite lo siguiente:
+\[
+ \{a, a, b\} = \{a, b\} = \{b,a\}.
+ \]
+Esto cumple con el punto de que, cuando consideramos conjuntos, no nos importa el orden de sus elementos, ni cuántas veces se especifican.
+
+\begin{tagblock}{novice}
+\begin{ex}
+Siempre que tengas un montón de objetos, puedes reunirlos en un conjunto. El conjunto de los hermanos de Richard, por ejemplo, es un conjunto que contiene a una persona, y podríamos escribirlo como $S=\{\textrm{Ruth}\}$. El conjunto de enteros positivos menores que $4$ es $\{1, 2, 3\}$, pero también se puede escribir como $\{3, 2, 1\}$ o incluso como $\{1, 2, 1, 2, 3\}$. Todos estos son el mismo conjunto, por extensionalidad. Porque todo elemento de $\{1, 2, 3\}$ es también elemento de $\{3, 2, 1\}$ (y de $\{1, 2, 1, 2, 3\}$), y viceversa.
+\end{ex}
+\end{tagblock}
+
+Frecuentemente especificaremos un conjunto mediante alguna propiedad que sus elementos comparten. Usaremos la siguiente notación abreviada para ello: $\Setabs{x}{\phi(x)}$, donde $\phi(x)$ representa la propiedad que~$x$ tiene que tener para ser contado entre los elementos del conjunto. 
+
+\begin{tagblock}{novice}
+\begin{ex}
+En nuestro ejemplo, podríamos haber especificado $S$ también como
+\[
+S = \Setabs{x}{x \text{ es hermano/a de Richard}}.
+\]
+\end{ex}
+\end{tagblock}
+
+\begin{tagblock}{math}
+\begin{ex}
+Un número se llama \emph{perfecto} si es igual a la suma de sus divisores propios (es decir, números que lo dividen exactamente pero no son idénticos al número). Por ejemplo, $6$ es perfecto porque sus divisores propios son $1$, $2$ y~$3$, y $6 = 1 + 2 + 3$. De hecho, $6$ es el único entero positivo menor que $10$ que es perfecto. Entonces, usando la extensionalidad, podemos decir:
+\[
+	\{6\} = \Setabs{x}{x\text{ es perfecto y }0 \leq x \leq 10}
+\]
+Leemos la notación de la derecha como ``el conjunto de las $x$ tales que $x$ es perfecto y $0 \leq x \leq 10$''. La identidad aquí confirma que, cuando consideramos conjuntos, no nos importa cómo se especifican. Y, más generalmente, la extensionalidad garantiza que siempre hay un solo conjunto de las $x$ tales que $\phi(x)$.
+Entonces, la extensionalidad justifica llamar a $\Setabs{x}{\phi(x)}$ \emph{el} conjunto de las $x$ tales que~$\phi(x)$.
+\end{ex}
+\end{tagblock}
+
+La extensionalidad nos da una forma de mostrar que los conjuntos son idénticos: para mostrar que $A = B$, muestra que siempre que $x \in A$ entonces también $x \in B$, y siempre que $y \in B$ entonces también $y \in A$.
+
+\begin{prob}
+Prueba que hay a lo sumo un conjunto vacío, es decir, muestra que si $A$ y $B$ son conjuntos sin elementos, entonces $A = B$.
+\end{prob}
+
+\end{document}

@@ -1,0 +1,118 @@
+% Part: sets-functions-relations
+% Chapter: functions
+% Section: kinds
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{fun}{kin}
+\olsection{Tipos de Funciones}
+
+\begin{explain}
+Será útil introducir una especie de taxonomía para algunos de los
+tipos de funciones que encontramos con mayor frecuencia.
+
+Para empezar, podríamos considerar funciones que tienen la propiedad
+de que cada miembro del codominio es un valor de la función. Tales
+funciones se denominan !!{sobreyectivas}, y se pueden representar como en
+\olref{fig:surjective}.
+
+\begin{figure}
+  \olasset{assets/diagrams/surjective.tikz}
+  \caption{!!^a{Una función sobreyectiva} tiene cada !!{elemento} del
+    codominio como un valor.}
+  \ollabel{fig:surjective}
+\end{figure}
+\end{explain}
+
+\begin{defn}[Función !!^{sobreyectiva}]
+Una función $f \colon A \rightarrow B$ es \emph{!!{sobreyectiva}} si y solo si $B$
+es también el rango de~$f$, es decir, para cada $y \in B$ existe al menos
+un $x \in A$ tal que~$f(x) = y$, o en símbolos:
+\[
+  (\forall y \in B)(\exists x \in A)f(x) = y.
+\]
+Llamamos a tal función !!una{sobreyección} de $A$ a $B$.
+\end{defn}
+
+\begin{explain}
+Si quieres demostrar que $f$ es !!una{sobreyección}, entonces necesitas demostrar
+que cada objeto en el codominio de $f$ es el valor de $f(x)$ para alguna
+entrada $x$.
+
+Ten en cuenta que cualquier función \emph{induce} !!una{sobreyección}. Después de todo,
+dada una función $f \colon A \to B$, sea $f' \colon A \to \ran{f}$ definida por
+$f'(x) = f(x)$. Dado que $\ran{f}$ está \emph{definido} como
+$\Setabs{f(x) \in B}{x \in A}$, esta función $f'$ está garantizada de ser
+!!una{sobreyección}.
+\end{explain}
+
+\begin{explain}
+Ahora, cualquier función mapea cada entrada posible a una salida única. Pero
+también hay funciones que nunca mapean entradas diferentes a las mismas
+salidas. Tales funciones se denominan !!{inyectivas}, y se pueden representar
+como en \olref{fig:injective}.
+\begin{figure}
+  \olasset{assets/diagrams/injective.tikz}
+  \caption{!!^a{Una función inyectiva} nunca mapea dos argumentos diferentes
+    al mismo valor.}
+  \ollabel{fig:injective}
+\end{figure}
+\end{explain}
+
+\begin{defn}[Función !!^{inyectiva}]
+Una función $f \colon A \rightarrow B$ es \emph{!!{inyectiva}} si y solo si para
+cada $y \in B$ existe como máximo un $x \in A$ tal que~$f(x) = y$. Llamamos
+a tal función !!una{inyección} de $A$ a~$B$.
+\end{defn}
+
+\begin{explain}
+Si quieres demostrar que $f$ es !!una{inyección}, necesitas demostrar que
+para cualquier !!{elemento} $x$ e $y$ del dominio de $f$, si $f(x)=f(y)$, entonces
+$x=y$.
+\end{explain}
+
+\begin{ex}
+La función constante $f\colon \Nat \to \Nat$ dada por $f(x) = 1$ no es
+!!{inyectiva} ni !!{sobreyectiva}.
+
+La función identidad $f\colon \Nat \to \Nat$ dada por $f(x) = x$ es tanto
+!!{inyectiva} como !!{sobreyectiva}.
+
+La función sucesor $f \colon \Nat \to \Nat$ dada por $f(x) = x+1$ es
+!!{inyectiva} pero no !!{sobreyectiva}.
+
+La función $f \colon \Nat \to \Nat$ definida por:
+\[
+  f(x) =
+  \begin{cases}
+    \frac{x}{2} & \text{si $x$ es par} \\
+    \frac{x+1}{2} & \text{si $x$ es impar.}
+  \end{cases}
+\]
+es !!{sobreyectiva}, pero no !!{inyectiva}.
+\end{ex}
+
+\begin{explain}
+A menudo, queremos considerar funciones que son tanto
+!!{inyectivas} como !!{sobreyectivas}. Llamamos a tales funciones
+!!{biyectivas}. Se ven como la función representada en
+\olref{fig:bijective}. Las !!^{biyecciones} también se denominan a veces
+\emph{correspondencias uno a uno}, ya que emparejan de forma única los elementos
+del codominio con los elementos del dominio.
+\begin{figure}
+  \olasset{assets/diagrams/bijective.tikz}
+  \caption{!!^a{Una función biyectiva} empareja de forma única los elementos del
+    codominio con los del dominio.}
+  \ollabel{fig:bijective}
+\end{figure}
+\end{explain}
+
+\begin{defn}[!!^{biyección}]
+Una función $f \colon A \to B$ es \emph{!!{biyectiva}} si y solo si es tanto
+!!{sobreyectiva} como !!{inyectiva}. Llamamos a tal función
+!!una{biyección} de $A$ a~$B$ (o entre $A$ y~$B$).
+\end{defn}
+
+\end{document}

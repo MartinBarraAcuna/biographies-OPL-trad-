@@ -1,0 +1,43 @@
+% Part: sets-functions-relations
+% Chapter: functions
+% Section: composition
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{fun}{cmp}
+\olsection{Composición de Funciones}
+
+\begin{explain}
+\oliflabeldef{sfr:fun:inv:sec}{Vimos en \olref[inv]{sec} que la inversa~$f^{-1}$ de una !!{biyeción}~$f$ es en sí misma una función. Otra operación sobre funciones es la composición: p}{P}odemos definir una nueva función componiendo dos funciones, $f$ y~$g$, es decir, aplicando primero $f$ y luego~$g$. Por supuesto, esto solo es posible si los rangos y dominios coinciden, es decir, el rango de~$f$ debe ser un subconjunto del dominio de~$g$. \oliflabeldef{sfr:rel:ops:sec}{Esta operación sobre funciones es análoga a la operación de producto relativo en relaciones de \olref[rel][ops]{sec}.}{}
+
+Un diagrama podría ayudar a explicar la idea de la composición. En \olref{fig:composition}, representamos dos funciones $f \colon A \to B$ y $g \colon B \to C$ y su composición~$(\comp{f}{g})$. La función $(\comp{f}{g}) \colon A \to C$ empareja cada !!{elemento} de~$A$ con un !!{elemento} de~$C$. Especificamos con qué !!{elemento} de~$C$ se empareja un !!{elemento} de $A$ de la siguiente manera: dado una entrada $x \in A$, primero aplicamos la función $f$ a~$x$, que producirá algún $f(x) = y \in B$, luego aplicamos la función $g$ a~$y$, que producirá algún $g(f(x)) = g(y) = z \in C$.
+\begin{figure}
+  \olasset[2\olphotowidth]{assets/diagrams/composition.tikz}
+  \caption{La composición $g \circ f$ de dos funciones $f$ y~$g$.}
+  \ollabel{fig:composition}
+\end{figure}
+\end{explain}
+
+\begin{defn}[Composición]
+Sean $f\colon A \to B$ y $g\colon B \to C$ funciones. La \emph{composición} de $f$ con~$g$ es $\comp{f}{g} \colon A \to C$, donde $(\comp{f}{g})(x) = g(f(x))$.
+\end{defn}
+
+\begin{ex}
+Consideremos las funciones $f(x) = x + 1$ y $g(x) = 2x$. Dado que $(\comp{f}{g})(x) = g(f(x))$, para cada entrada~$x$ primero debemos tomar su sucesor y luego multiplicar el resultado por dos. Por lo tanto, su composición está dada por $(\comp{f}{g})(x) = 2(x+1)$.
+\end{ex}
+
+\begin{prob}
+Demuestre que si $f \colon A \to B$ y $g \colon B \to C$ son ambas !!{inyectivas}, entonces $\comp{f}{g}\colon A \to C$ es !!{inyectiva}.
+\end{prob}
+
+\begin{prob}
+Demuestre que si $f \colon A \to B$ y $g \colon B \to C$ son ambas !!{sobreyectivas}, entonces $\comp{f}{g}\colon A \to C$ es !!{sobreyectiva}.
+\end{prob}
+
+\begin{prob}
+Suponga que $f \colon A \to B$ y $g \colon B \to C$. Demuestre que el gráfico de $\comp{f}{g}$ es $R_f \mid R_g$.
+\end{prob}
+
+\end{document}

@@ -1,0 +1,97 @@
+% Part: sets-functions-relations
+% Chapter: functions
+% Section: functions-relations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+
+\begin{document}
+
+\olfileid{sfr}{fun}{rel}
+
+\olsection{Funciones como Relaciones}
+
+\begin{explain}
+Una función que mapea !!{elementos} de~$A$ a !!{elementos} de~$B$
+obviamente define una relación entre $A$ y~$B$, a saber, la relación
+que se cumple entre $x$ e $y$ si y solo si $f(x) = y$. De hecho, podríamos
+incluso---si estamos interesados en reducir los bloques de construcción de
+las matemáticas, por ejemplo--- \emph{identificar} la función~$f$ con esta
+relación, es decir, con un conjunto de pares. Esto plantea entonces la pregunta:
+¿qué relaciones definen funciones de esta manera?
+\end{explain}
+
+\begin{defn}[Gráfica de una función] Sea $f\colon A \to B$ una función.
+La \emph{gráfica} de~$f$ es la relación $R_f \subseteq A \times B$
+definida por
+\[
+R_f = \Setabs{\tuple{x,y}}{f(x) = y}.
+\]
+\end{defn}
+
+\begin{explain}
+La gráfica de una función está determinada de manera única, por extensionalidad.
+Además, la extensionalidad (en conjuntos) vindicará inmediatamente el
+principio implícito de extensionalidad para funciones,
+por el cual si $f$ y~$g$ comparten dominio y codominio, entonces son
+idénticas si coinciden en todos los valores.
+
+De manera similar, si una relación es "funcional", entonces es la gráfica de una función.
+\end{explain}
+
+\begin{prop}\ollabel{prop:graph-function}
+Sea $R \subseteq A \times B$ tal que:
+\begin{enumerate}
+\item Si $Rxy$ y $Rxz$, entonces $y = z$; y
+\item para cada $x \in A$ existe algún $y \in B$ tal que $\tuple{x, y} \in R$.
+\end{enumerate}
+Entonces $R$ es la gráfica de la función $f\colon A \to B$ definida por
+$f(x) = y$ si y solo si $Rxy$.
+\end{prop}
+
+\begin{proof}
+Supongamos que existe un $y$ tal que $Rxy$. Si existiera otro $z \neq
+y$ tal que $Rxz$, la condición sobre~$R$ se violaría. Por lo tanto, si
+existe un $y$ tal que $Rxy$, este $y$ es único, y por lo tanto $f$ está
+bien definida. Obviamente, $R_f = R$.
+\end{proof}
+
+\begin{explain}
+Cada función $f\colon A \to B$ tiene una gráfica, es decir, una relación en $A
+\times B$ definida por $f(x) = y$. Por otro lado, cada relación~$R
+\subseteq A \times B$ con las propiedades dadas en
+\olref{prop:graph-function} es la gráfica de una función~$f \colon A \to
+B$. Debido a esta estrecha conexión entre las funciones y sus
+gráficas, podemos pensar en una función simplemente como su gráfica. En otras
+palabras, las funciones pueden identificarse con ciertas relaciones, es decir, con
+ciertos conjuntos de tuplas. \oliflabeldef{sfr:rel:ref:sec}{Sin embargo, ten en cuenta,
+que el espíritu de esta "identificación" es como en
+\olref[sfr][rel][ref]{sec}: no es una afirmación sobre la metafísica de
+las funciones, sino una observación de que es conveniente \emph{tratar}
+las funciones como ciertos conjuntos. Una razón por la que esto es tan conveniente, es
+que a}{A}hora podemos considerar realizar operaciones similares en
+funciones como las que realizamos en relaciones (ver
+\olref[sfr][rel][ops]{sec}). En particular:
+\end{explain}
+
+\begin{defn}\ollabel{defn:funimage}
+Sea $f \colon A \to B$ una función con $C\subseteq A$.
+
+La \emph{restricción} de~$f$ a~$C$ es la
+función~$\funrestrictionto{f}{C}\colon C \to B$ definida por
+$(\funrestrictionto{f}{C})(x) = f(x)$ para todo $x \in C$. En otras
+palabras, $\funrestrictionto{f}{C} = \Setabs{\tuple{x, y} \in R_f}{x \in
+C}$.
+
+La \emph{aplicación} de~$f$ a~$C$ es $\funimage{f}{C} =
+\Setabs{f(x)}{x \in C}$. También llamamos a esto la \emph{imagen} de~$C$
+bajo~$f$.
+\end{defn}
+
+\begin{explain}
+De estas definiciones se deduce que $\ran{f} =
+\funimage{f}{\dom{f}}$, para cualquier función~$f$.
+\oliflabeldef{sfr:rel:ops:sec}{Estas nociones son exactamente como uno esperaría, dadas las definiciones en \olref[sfr][rel][ops]{sec} y nuestra identificación de las funciones con las relaciones. Pero otras dos operaciones---inversas y productos relativos---requieren un poco más de detalle. Lo proporcionaremos en \olref[inv]{sec} y \olref[cmp]{sec}.}{}
+\end{explain}
+
+\end{document}

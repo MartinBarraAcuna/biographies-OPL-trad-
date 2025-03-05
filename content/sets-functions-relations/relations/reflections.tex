@@ -1,0 +1,33 @@
+% Part: sets-functions-relations
+% Chapter: relations
+% Section: reflections
+%
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{rel}{ref}
+\olsection{Reflexiones filosóficas}
+
+En \olref[set]{sec}, definimos las relaciones como ciertos conjuntos. Deberíamos
+detenernos y hacer una rápida pregunta filosófica: ¿qué está \emph{haciendo} tal
+definición? Es extremadamente dudoso que debamos querer decir que hemos
+\emph{descubierto} algunos hechos de identidad metafísica; que, por ejemplo, la relación de orden en $\Nat$ \emph{resultó ser} el conjunto $R= \Setabs{\tuple{n,m}}{n, m \in \Nat\text{ y } n < m}$ que definimos en \olref[set]{sec}. Aquí hay tres
+razones por las cuales.
+
+Primero: en \olref[set][pai]{wienerkuratowski}, definimos $\tuple{a, b} = \{\{a\}, \{a, b\}\}$. Consideremos en cambio la definición $\lVert a,
+b\rVert = \{\{b\}, \{a, b\}\} = \tuple{b,a}$. Cuando $a \neq b$, tenemos que $\tuple{a, b} \neq \lVert a,b\rVert$. Pero podríamos igualmente haber considerado $\lVert a,b\rVert$ como nuestra definición de un par ordenado, en lugar de $\tuple{a,b}$. Ambas definiciones habrían funcionado igual de bien. Así que ahora tenemos dos candidatos igualmente buenos para ``ser'' la relación de orden en los números naturales, a saber:
+\begin{align*}
+		R &= \Setabs{\tuple{n,m}}{n, m \in \Nat \text{ y }n < m}\\
+		S &= \Setabs{\lVert n,m\rVert}{n, m \in \Nat \text{ y }n < m}.
+\end{align*}
+Dado que $R \neq S$, por extensionalidad, está claro que no pueden \emph{ambos} ser idénticos a la relación de orden en~$\Nat$. Pero sería simplemente arbitrario, y por lo tanto un poco vergonzoso, afirmar que $R$ en lugar de $S$ (o viceversa) \emph{es} la relación de orden, como un hecho. (Este es un ejemplo muy simple de un argumento contra el reduccionismo de la teoría de conjuntos que Benacerraf hizo famoso en \citeyear{Benacerraf1965}. Lo revisaremos varias veces.)
+
+Segundo: si pensamos que \emph{toda} relación debe ser identificada con un conjunto, entonces la relación de pertenencia a conjuntos misma, $\in$, debería ser un conjunto particular. De hecho, tendría que ser el conjunto $\Setabs{\tuple{x,y}}{x \in y}$. ¿Pero existe este conjunto? Dado la paradoja de Russell, es una afirmación no trivial que tal conjunto exista. De hecho, \oliflabeldef{cumul:::part}{la teoría de conjuntos que desarrollamos en \olref[cumul][][]{part} \emph{negará} la existencia de este conjunto.\footnote{Adelantándonos, aquí está el porqué. Por reducción al absurdo, supongamos que $I = \Setabs{\tuple{x,y}}{x \in y}$ existe. Entonces $\bigcup \bigcup I$ es el conjunto universal, contradiciendo \olref[sfr][z][sep]{thm:NoUniversalSet}.}}{es posible desarrollar la teoría de conjuntos de manera rigurosa como una teoría axiomática, y esa teoría de hecho negará la existencia de este conjunto.}
+Entonces, incluso si algunas relaciones pueden ser tratadas como conjuntos, la relación de pertenencia a conjuntos tendrá que ser un caso especial.
+
+Tercero: cuando ``identificamos'' relaciones con conjuntos, dijimos que nos permitiríamos escribir $Rxy$ para $\tuple{x,y} \in R$. Esto está bien, siempre que la relación de pertenencia, ``$\in$'', sea tratada \emph{como} un predicado. Pero si pensamos que ``$\in$'' representa un cierto tipo de conjunto, entonces la expresión ``$\tuple{x,y} \in R$'' simplemente consiste en tres términos singulares que representan conjuntos: ``$\tuple{x,y}$'', ``$\in$'', y ``$R$''. Y tal lista de nombres no es más capaz de expresar una proposición que la cadena sin sentido: ``la taza portalápices la mesa''. Nuevamente, incluso si algunas relaciones pueden ser tratadas como conjuntos, la relación de pertenencia a conjuntos debe ser un caso especial. (Esto combina una versión simple de la paradoja del \emph{caballo} de Frege, y una objeción famosa que Wittgenstein planteó una vez contra Russell.)
+
+Entonces, ¿dónde nos deja esto? Bueno, no hay nada \emph{malo} en que digamos que las relaciones en los números son conjuntos. Simplemente tenemos que entender el espíritu en el que se hace esa observación. No estamos declarando un hecho de identidad metafísica. Simplemente estamos señalando que, en ciertos contextos, podemos (y vamos a) \emph{tratar} (ciertas) relaciones como ciertos conjuntos.
+
+\end{document}

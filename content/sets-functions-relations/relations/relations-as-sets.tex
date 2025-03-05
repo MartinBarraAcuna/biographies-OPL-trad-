@@ -1,0 +1,75 @@
+% Part: sets-functions-relations
+% Chapter: relations
+% Section: relations-as-sets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{rel}{set}
+\olsection{Relaciones como conjuntos}
+
+\begin{explain}
+En \olref[sfr][set][imp]{sec}, mencionamos algunos conjuntos importantes: $\Nat$, $\Int$, $\Rat$, $\Real$. Sin duda recordarás algunas relaciones interesantes entre los !!{element}s de algunos de estos conjuntos. Por ejemplo, cada uno de estos conjuntos tiene una \emph{relación de orden} completamente estándar. También está la relación \emph{es idéntico a} que cada objeto tiene consigo mismo y con ninguna otra cosa. Hay muchas más relaciones interesantes que encontraremos, e incluso más relaciones posibles. Sin embargo, antes de revisarlas, comenzaremos señalando que podemos ver las relaciones como un tipo especial de conjunto.
+
+Para esto, recordemos dos cosas de \olref[sfr][set][pai]{sec}. Primero, recordemos la noción de un \emph{par ordenado}: dados $a$ y $b$, podemos formar~$\tuple{a, b}$. Es importante destacar que el orden de los elementos \emph{sí} importa aquí. Entonces, si $a \neq b$, entonces $\tuple{a, b} \neq \tuple{b, a}$. (Contrasta esto con los pares no ordenados, es decir, conjuntos de 2 elementos, donde $\{a, b\}=\{b, a\}$.) Segundo, recordemos la noción de un \emph{producto cartesiano}: si $A$ y $B$ son conjuntos, entonces podemos formar~$A \times B$, el conjunto de todos los pares $\tuple{x, y}$ con $x \in A$ y $y \in B$. En particular, $A^{2}= A \times A$ es el conjunto de todos los pares ordenados de~$A$.
+
+Ahora consideraremos una relación particular en un conjunto: la relación $<$-en el conjunto~$\Nat$ de números naturales. Consideremos el conjunto de todos los pares de números $\tuple{n, m}$ donde $n<m$, es decir,
+\[
+R=\Setabs{\tuple{n, m}}{n, m \in \Nat \text{ y } n<m}.
+\]
+Existe una estrecha conexión entre que $n$ sea menor que $m$, y que el par $\tuple{n, m}$ sea un miembro de $R$, a saber:
+\[
+n<m\text{ si y solo si }\tuple{n, m} \in R.
+\]
+De hecho, sin pérdida de información, podemos considerar que el conjunto $R$ \emph{es} la relación $<$-en $\Nat$.
+
+De la misma manera, podemos construir un subconjunto de $\Nat^{2}$ para cualquier relación entre números. Por el contrario, dado cualquier conjunto de pares de números $S \subseteq \Nat^{2}$, existe una relación correspondiente entre números, a saber, la relación que $n$ tiene con $m$ si y solo si $\tuple{n, m} \in S$. Esto justifica la siguiente definición:
+\end{explain}
+
+\begin{defn}[Relación binaria]
+Una \emph{relación binaria} en un conjunto $A$ es un subconjunto de~$A^{2}$. Si $R \subseteq A^{2}$ es una relación binaria en~$A$ y $x, y \in A$, a veces escribimos $Rxy$ (o $xRy$) para $\tuple{x, y} \in R$.
+\end{defn}
+
+\begin{ex}
+\ollabel{relations}
+El conjunto $\Nat^{2}$ de pares de números naturales se puede enumerar en una matriz bidimensional como esta:
+\[
+\begin{array}{ccccc}
+\mathbf{\tuple{ 0,0 }} & \tuple{ 0,1 } &
+\tuple{ 0,2 } & \tuple{ 0,3 } & \ldots\\
+\tuple{ 1,0 } & \mathbf{\tuple{ 1,1 }} &
+\tuple{ 1,2 } & \tuple{ 1,3 } & \ldots\\
+\tuple{ 2,0 } & \tuple{ 2,1 } &
+\mathbf{\tuple{ 2,2 }} & \tuple{ 2,3 } & \ldots\\
+\tuple{ 3,0 } & \tuple{ 3,1 } & \tuple{ 3,2 } &
+\mathbf{\tuple{ 3,3 }} & \ldots\\
+\vdots & \vdots & \vdots & \vdots & \mathbf{\ddots}
+\end{array}
+\]
+Hemos puesto la diagonal, aquí, en negrita, ya que el subconjunto de $\Nat^2$ que consiste en los pares que se encuentran en la diagonal, es decir,
+\[
+\{\tuple{0,0 }, \tuple{ 1,1 }, \tuple{ 2,2 }, \dots\},
+\]
+es la \emph{relación de identidad en}~$\Nat$. (Dado que la relación de identidad es popular, definamos $\Id{A}=\Setabs{\tuple{ x,x }}{x \in A}$ para cualquier conjunto $A$.) El subconjunto de todos los pares que se encuentran por encima de la diagonal, es decir,
+\[
+L = \{\tuple{ 0,1 },\tuple{ 0,2 },\ldots,\tuple{ 1,2 },
+\tuple{ 1,3 }, \dots, \tuple{ 2,3 }, \tuple{ 2,4 },\ldots\},
+\]
+es la relación \emph{menor que}, es decir, $Lnm$ si y solo si $n<m$. El subconjunto de pares por debajo de la diagonal, es decir,
+\[
+G=\{ \tuple{ 1,0 },\tuple{ 2,0 },\tuple{
+2,1 }, \tuple{ 3,0 },\tuple{ 3,1 },\tuple{ 3,2 }, \dots\},
+\]
+es la relación \emph{mayor que}, es decir, $Gnm$ si y solo si $n>m$. La unión de $L$ con $I$, que podríamos llamar $K=L\cup I$, es la relación \emph{menor o igual que}: $Knm$ si y solo si $n \le m$. De manera similar, $H=G \cup I$ es la \emph{relación mayor o igual que}. Estas relaciones $L$, $G$, $K$ y $H$ son tipos especiales de relaciones llamadas \emph{órdenes}. $L$ y $G$ tienen la propiedad de que ningún número tiene $L$ o $G$ consigo mismo (es decir, para todo $n$, ni $Lnn$ ni $Gnn$). Las relaciones con esta propiedad se llaman \emph{irreflexivas}, y, si también resultan ser órdenes, se llaman \emph{órdenes estrictos.}
+\end{ex}
+
+\begin{explain}
+Aunque los órdenes y la identidad son relaciones importantes y naturales, debe enfatizarse que, según nuestra definición, \emph{cualquier} subconjunto de $A^{2}$ es una relación en~$A$, independientemente de cuán antinatural o artificioso parezca. En particular, $\emptyset$ es una relación en cualquier conjunto (la \emph{relación vacía}, que ningún par de elementos tiene), y $A^{2}$~mismo es una relación en~$A$ también (una que todo par tiene), llamada la \emph{relación universal}. Pero también algo como $E=\Setabs{\tuple{n, m}}{n>5 \text{ o } m \times n \ge 34}$ cuenta como una relación.
+\end{explain}
+
+\begin{prob}
+Enumera los !!{element}s de la relación $\subseteq$ en el conjunto $\Pow{\{a, b, c\}}$.
+\end{prob}
+
+\end{document}

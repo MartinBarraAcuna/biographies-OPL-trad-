@@ -1,0 +1,66 @@
+% Part: sets-functions-relations
+% Chapter: sets
+% Section: subsets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{set}{sub}
+\olsection{Subconjuntos y Conjuntos Potencia}
+
+\begin{explain}
+A menudo querremos comparar conjuntos. Y un tipo obvio de comparación que uno podría hacer es el siguiente: \emph{todo en un conjunto está también en el otro}. Esta situación es lo suficientemente importante como para que introduzcamos una nueva notación.
+\end{explain}
+
+\begin{defn}[Subconjunto]
+Si todo elemento de un conjunto $A$ es también elemento de~$B$, entonces decimos que $A$ es un \emph{subconjunto} de~$B$, y escribimos $A \subseteq B$. Si $A$ no es un subconjunto de~$B$ escribimos $A \not\subseteq B$. Si $A \subseteq B$ pero $A \neq B$, escribimos $A \subsetneq B$ y decimos que $A$ es un \emph{subconjunto propio} de $B$.
+\end{defn}
+
+\begin{ex}
+Todo conjunto es un subconjunto de sí mismo, y $\emptyset$ es un subconjunto de todo conjunto. El conjunto de números pares es un subconjunto del conjunto de números naturales. También, $\{ a, b \} \subseteq \{ a, b, c \}$. Pero $\{ a, b, e \}$ no es un subconjunto de $\{ a, b, c \}$.
+\end{ex}
+
+\begin{ex}
+El número $2$ es un elemento del conjunto de enteros, mientras que el conjunto de números pares es un subconjunto del conjunto de enteros. Sin embargo, un conjunto puede resultar \emph{tanto} ser elemento como un subconjunto de algún otro conjunto, por ejemplo, $\{0\} \in \{0, \{0\}\}$ y también $\{0\} \subseteq \{0, \{0\}\}$.
+\end{ex}
+
+La extensionalidad da un criterio de identidad para conjuntos: $A = B$ si y solo si todo elemento de~$A$ es también elemento de~$B$ y viceversa. La definición de ``subconjunto'' define $A \subseteq B$ precisamente como la primera mitad de este criterio: todo elemento de~$A$ es también elemento de~$B$. Por supuesto, la definición también se aplica si intercambiamos $A$ y $B$: es decir, $B \subseteq A$ si y solo si todo elemento de~$B$ es también elemento de~$A$. Y eso, a su vez, es exactamente la parte de ``viceversa'' de la extensionalidad. En otras palabras, la extensionalidad implica que los conjuntos son iguales si y solo si son subconjuntos uno del otro.
+
+\begin{prop}
+$A = B$ si y solo si tanto $A \subseteq B$ como $B \subseteq A$.
+\end{prop}
+
+Ahora también es una buena oportunidad para introducir algunas otras notaciones útiles. Al definir cuándo $A$ es un subconjunto de~$B$, dijimos que ``todo elemento de~$A$ es \dots,'' y llenamos los ``$\dots$'' con ``elemento de $B$''. Pero esta es una \emph{forma} de expresión tan común que será útil introducir una notación formal para ello.
+
+\begin{defn}\ollabel{forallxina}
+$(\forall x \in A)\phi$ abrevia $\forall x(x \in A \lif \phi)$. Similarmente, $(\exists x \in A)\phi$ abrevia $\exists x(x \in A \land \phi)$. 
+\end{defn}
+
+Usando esta notación, podemos decir que $A \subseteq B$ si y solo si $(\forall x \in A)x \in B$. 
+
+Ahora pasamos a considerar un cierto tipo de conjunto: el conjunto de todos los subconjuntos de un conjunto dado. 
+
+\begin{defn}[Conjunto Potencia]
+El conjunto que consta de todos los subconjuntos de un conjunto~$A$ se llama el \emph{conjunto potencia de}~$A$, y se escribe $\Pow{A}$.
+  \[
+    \Pow{A} = \Setabs{B}{B \subseteq A} 
+  \]
+\end{defn}
+
+\begin{ex}
+¿Cuáles son todos los posibles subconjuntos de $\{ a, b, c \}$? Son: $\emptyset$, $\{a \}$, $\{b\}$, $\{c\}$, $\{a, b\}$, $\{a, c\}$, $\{b, c\}$, $\{a, b, c\}$. El conjunto de todos estos subconjuntos es $\Pow{\{a,b,c\}}$:
+\[
+\Pow{\{ a, b, c \}} = \{\emptyset, \{a \}, \{b\}, \{c\}, \{a, b\}, \{b, c\}, \{a, c\}, \{a, b, c\}\}
+\]
+\end{ex}
+
+\begin{prob}
+Enumera todos los subconjuntos de $\{a, b, c, d\}$.
+\end{prob}
+
+\begin{prob}
+Muestra que si $A$ tiene $n$ elementos, entonces $\Pow{A}$ tiene $2^n$ elementos.
+\end{prob}
+
+\end{document}

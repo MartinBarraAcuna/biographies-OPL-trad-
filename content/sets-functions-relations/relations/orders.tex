@@ -1,0 +1,99 @@
+% Part: sets-functions-relations
+% Chapter: relations
+% Section: orders
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{rel}{ord}
+\olsection{Órdenes}
+
+\begin{explain}
+Muchas de nuestras comparaciones implican describir algunos objetos como "menores que", "iguales a" o "mayores que" otros objetos, en cierto aspecto. Estos implican relaciones de \emph{orden}. Pero hay diferentes tipos de relaciones de orden. Por ejemplo, algunas requieren que dos objetos sean comparables, otras no. Algunas incluyen la identidad (como~$\le$) y otras la excluyen (como~$<$). Nos ayudará tener una taxonomía aquí.
+\end{explain}
+
+\begin{defn}[Preorden]
+Una relación que es tanto reflexiva como transitiva se llama \emph{preorden}.
+\end{defn}
+
+\begin{defn}[Orden parcial]
+Un preorden que también es antisimétrico se llama \emph{orden parcial}.
+\end{defn}
+
+\begin{defn}[Orden lineal]\ollabel{def:linearorder}
+Un orden parcial que también es conectado se llama \emph{orden total} u \emph{orden lineal}.
+\end{defn}
+
+\begin{ex}
+Todo orden lineal es también un orden parcial, y todo orden parcial es también un preorden, pero los conversos no se cumplen. La relación universal en~$A$ es un preorden, ya que es reflexiva y transitiva. Pero, si $A$ tiene más de un !!{element}o, la relación universal no es antisimétrica, y por lo tanto no es un orden parcial.
+\end{ex}
+
+\begin{ex}
+Consideremos la relación \emph{no más largo que} $\preccurlyeq$ en~$\Bin^*$: $x \preccurlyeq y$ si y solo si $\len{x} \le \len{y}$. Esto es un preorden (reflexivo y transitivo), e incluso conectado, pero no un orden parcial, ya que no es antisimétrico. Por ejemplo, $01 \preccurlyeq 10$ y $10 \preccurlyeq 01$, pero $01 \neq 10$.
+\end{ex}
+
+\begin{ex}
+Un orden parcial importante es la relación $\subseteq$ en un conjunto de conjuntos. Esto no es en general un orden lineal, ya que si $a \neq b$ y consideramos $\Pow{\{a, b\}} = \{\emptyset, \{a\}, \{b\}, \{a,b\}\}$, vemos que $\{a\} \nsubseteq \{b\}$ y $\{a\} \neq \{b\}$ y $\{b\} \nsubseteq \{a\}$.
+\end{ex}
+
+\begin{ex}
+La relación de \emph{divisibilidad sin resto} nos da un orden parcial que no es un orden lineal. Para enteros $n$, $m$, escribimos $n\mid m$ para significar que $n$ divide (exactamente) a $m$, es decir, si y solo si existe algún entero~$k$ tal que $m=kn$. En $\Nat$, esto es un orden parcial, pero no un orden lineal: por ejemplo, $2\nmid3$ y también $3\nmid2$. Considerado como una relación en $\Int$, la divisibilidad es solo un preorden ya que no es antisimétrica: $1\mid-1$ y $-1\mid1$ pero $1\neq-1$.
+\end{ex}
+
+\begin{defn}[Orden estricto]
+Un \emph{orden estricto} es una relación que es irreflexiva, asimétrica y transitiva.
+\end{defn}
+
+\begin{defn}[Orden lineal estricto]\ollabel{def:strictlinearorder}
+Un orden estricto que también es conectado se llama \emph{orden total estricto} u \emph{orden lineal estricto}.
+\end{defn}
+
+\begin{ex}
+$\le$ es el orden lineal correspondiente al orden lineal estricto~$<$. $\subseteq$ es el orden parcial correspondiente al orden estricto~$\subsetneq$.
+\end{ex}
+
+Cualquier orden estricto $R$ en~$A$ se puede convertir en un orden parcial agregando la diagonal $\Id{A}$, es decir, agregando todos los pares~$\tuple{x, x}$. (Esto se llama el \emph{cierre reflexivo} de~$R$.) Por el contrario, partiendo de un orden parcial, se puede obtener un orden estricto eliminando~$\Id{A}$. Los siguientes dos resultados hacen esto preciso.
+
+\begin{prop}\ollabel{prop:stricttopartial}
+Si $R$ es un orden estricto en~$A$, entonces $R^+ = R \cup \Id{A}$ es un orden parcial. Además, si $R$ es un orden lineal estricto, entonces $R^+$ es un orden lineal.
+\end{prop}
+
+\begin{proof}
+Supongamos que $R$ es un orden estricto, es decir, $R \subseteq A^2$ y $R$ es irreflexivo, asimétrico y transitivo. Sea $R^+ = R \cup \Id{A}$. Tenemos que demostrar que $R^+$ es reflexivo, antisimétrico y transitivo.
+
+$R^+$ es claramente reflexivo, ya que $\tuple{x, x} \in \Id{A} \subseteq R^+$ para todo $x \in A$.
+
+Para demostrar que $R^+$ es antisimétrico, supongamos por reducción al absurdo que $R^+xy$ y $R^+yx$ pero $x \neq y$. Dado que $\tuple{x,y} \in R \cup \Id{A}$, pero $\tuple{x, y} \notin \Id{A}$, debemos tener $\tuple{x, y} \in R$, es decir, $Rxy$. De manera similar,~$Ryx$. Pero esto contradice la suposición de que $R$ es asimétrico.
+
+Para establecer la transitividad, supongamos que $R^+xy$ y $R^+yz$. Si ambos $\tuple{x, y} \in R$ y $\tuple{y,z} \in R$, entonces $\tuple{x, z} \in R$ ya que $R$~es transitivo. De lo contrario, o bien $\tuple{x, y} \in \Id{A}$, es decir, $x = y$, o $\tuple{y, z} \in \Id{A}$, es decir, $y = z$. En el primer caso, tenemos que $R^+yz$ por suposición, $x = y$, por lo tanto $R^+xz$. De manera similar en el segundo caso. En cualquier caso, $R^+xz$, por lo tanto, $R^+$ también es transitivo.
+
+En cuanto a la cláusula "además", supongamos que $R$ también está conectado. Entonces, para todo $x \neq y$, o bien $Rxy$ o~$Ryx$, es decir, o bien $\tuple{x, y} \in R$ o $\tuple{y, x} \in R$. Dado que $R \subseteq R^+$, esto sigue siendo cierto para $R^+$, por lo que $R^+$ también está conectado.
+\end{proof}
+
+\begin{prop}\ollabel{prop:partialtostrict}
+Si $R$ es un orden parcial en~$A$, entonces $R^- = R \setminus \Id{A}$ es un orden estricto. Además, si $R$ es un orden lineal, entonces $R^-$ es un orden lineal estricto.
+\end{prop}
+
+\begin{proof}
+Esto se deja como ejercicio.
+\end{proof}
+
+\begin{prob}
+Da una prueba de \olref[sfr][rel][ord]{prop:partialtostrict}.
+\end{prob}
+
+El siguiente resultado simple establece que los órdenes lineales estrictos satisfacen una propiedad similar a la extensionalidad:
+
+\begin{prop}\ollabel{prop:extensionality-strictlinearorders}
+Si $<$ es un orden lineal estricto en $A$, entonces:
+\[
+(\forall a, b \in A)((\forall x \in A)(x < a \liff x < b) \lif a = b).
+\]
+\end{prop}
+
+\begin{proof}
+Supongamos $(\forall x \in A)(x < a \liff x < b)$. Si $a < b$, entonces $a < a$, contradiciendo el hecho de que $<$ es irreflexivo; entonces $a \nless b$. Exactamente de manera similar, $b \nless a$. Entonces $a = b$, ya que $<$ es conectado.
+\end{proof}
+
+\end{document}

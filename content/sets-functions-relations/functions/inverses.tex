@@ -1,0 +1,130 @@
+% Part: sets-functions-relations
+% Chapter: functions
+% Section: inverses
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{fun}{inv}
+\olsection{Inversas de Funciones}
+
+\begin{explain}
+Pensamos en las funciones como mapas. Una pregunta obvia que hacer sobre
+las funciones, entonces, es si el mapeo puede ser "invertido". Por
+ejemplo, la función sucesor $f(x) = x + 1$ puede ser invertida, en
+el sentido de que la función $g(y) = y - 1$ "deshace" lo que $f$ hace.
+
+Pero debemos ser cuidadosos. Aunque la definición de~$g$ define una
+función $\Int \to \Int$, no define una \emph{función} $\Nat \to \Nat$, ya que $g(0) \notin \Nat$. Así que incluso en casos simples, no es del todo obvio si una función puede ser invertida; puede depender del dominio y codominio.
+
+Esto se hace más preciso mediante la noción de una inversa de una función.
+\end{explain}
+
+\begin{defn}
+Una función $g \colon B \to A$ es una \emph{inversa} de una función $f
+\colon A \to B$ si $f(g(y)) = y$ y $g(f(x)) = x$ para todo $x \in A$
+e $y \in B$.
+\end{defn}
+
+Si $f$ tiene una inversa~$g$, a menudo escribimos $f^{-1}$ en lugar de~$g$.
+
+\begin{explain}
+Ahora determinaremos cuándo las funciones tienen inversas. Un buen candidato
+para una inversa de $f\colon A \to B$ es $g\colon B \to A$ "definida
+por"
+\[
+g(y) = \text{"el" $x$ tal que $f(x) = y$.}
+\]
+Pero las comillas de miedo alrededor de "definida por" (y "el") sugieren que
+esto no es una definición. Al menos, no siempre funcionará, con
+completa generalidad. Porque, para que esta definición especifique una
+función, tiene que haber uno y solo un~$x$ tal que $f(x) =
+y$---la salida de~$g$ tiene que estar especificada de manera única. Además, tiene que estar especificada para cada $y \in B$. Si hay $x_1$ y $x_2 \in
+A$ con $x_1 \neq x_2$ pero $f(x_1) = f(x_2)$, entonces $g(y)$ no estaría
+especificada de manera única para $y = f(x_1) = f(x_2)$. Y si no hay ningún~$x$
+en absoluto tal que $f(x) = y$, entonces $g(y)$ no está especificada en absoluto. En otras palabras, para que $g$ esté definida, $f$ debe ser tanto !!{inyectiva} como !!{sobreyectiva}.
+
+Vamos despacio. Dividiremos la pregunta en dos: Dada una
+función~$f\colon A \to B$, ¿cuándo existe una función $g\colon B \to A$
+tal que $g(f(x)) = x$? Tal $g$ "deshace" lo que $f$ hace, y se
+llama una \emph{inversa izquierda} de~$f$. En segundo lugar, ¿cuándo existe una
+función $h\colon B \to A$ tal que $f(h(y)) = y$? Tal $h$ se
+llama una \emph{inversa derecha} de~$f$---$f$ "deshace" lo que $h$ hace.
+\end{explain}
+
+\begin{prop}
+Si $f\colon A \to B$ es !!{inyectiva}, entonces existe una \emph{inversa izquierda}~$g\colon B \to A$ de~$f$ tal que $g(f(x)) = x$ para todo $x \in A$.
+\end{prop}
+
+\begin{proof}
+Supongamos que $f\colon A \to B$ es !!{inyectiva}. Consideremos un $y \in B$.
+Si $y \in \ran{f}$, existe un $x \in A$ tal que $f(x) = y$. Debido a que $f$ es !!{inyectiva}, solo hay un tal~$x \in A$. Entonces podemos definir: $g(y) = x$, es decir, $g(y)$ es "el" $x \in A$ tal que $f(x) = y$. Si $y \notin \ran{f}$, podemos mapearlo a cualquier~$a \in A$. Así que, podemos elegir un $a \in A$ y definir $g\colon B \to A$ por:
+\[
+g(y) = \begin{cases}
+  x & \text{si $f(x) = y$}\\
+  a & \text{si $y \notin \ran{f}$.}
+\end{cases}
+\]
+Está definida para todo $y \in B$, ya que para cada tal $y \in \ran{f}$
+existe exactamente un $x \in A$ tal que $f(x) = y$. Por definición, si
+$y = f(x)$, entonces $g(y) = x$, es decir, $g(f(x)) = x$.
+\end{proof}
+
+\begin{prob}
+Demuestra que si $f\colon A \to B$ tiene una inversa izquierda~$g$, entonces $f$ es !!{inyectiva}.
+\end{prob}
+
+\begin{prop}
+Si $f\colon A \to B$ es !!{sobreyectiva}, entonces existe una \emph{inversa derecha}~$h\colon B \to A$ de~$f$ tal que $f(h(y)) = y$ para todo~$y \in B$.
+\end{prop}
+
+\begin{proof}
+Supongamos que $f\colon A \to B$ es !!{sobreyectiva}. Consideremos un $y \in B$. Dado que $f$ es !!{sobreyectiva}, existe un $x_y \in A$ con $f(x_y) = y$. Entonces podemos definir: $h(y) = x_y$, es decir, para cada $y \in B$ elegimos algún $x \in A$ tal que $f(x) = y$; dado que $f$ es !!{sobreyectiva}, siempre hay al menos uno para elegir.\footnote{Dado que $f$ es !!{sobreyectiva}, para cada~$y \in B$ el conjunto $\Setabs{x}{f(x) = y}$ no está vacío. Nuestra definición de~$h$ requiere que elijamos un solo $x$ de cada uno de estos conjuntos. Que esto sea siempre posible no es realmente obvio---la posibilidad de hacer estas elecciones simplemente se asume como un axioma. En otras palabras, esta proposición asume el llamado Axioma de Elección, un asunto que \oliflabeldef{sth:choice::chap}{revisitaremos en \olref[sth][choice][]{chap}}{pasaremos por alto}. Sin embargo, en muchos casos específicos, por ejemplo, cuando $A = \Nat$ o es finito, o cuando $f$ es !!{biyectiva}, el Axioma de Elección no es necesario. (En el caso particular cuando $f$ es !!{biyectiva}, para cada $y \in B$ el conjunto $\Setabs{x}{f(x) = y}$ tiene exactamente un !!{elemento}, por lo que no hay elección que hacer.)} Por definición, si $x = h(y)$, entonces $f(x) = y$, es decir, para cualquier $y \in B$, $f(h(y)) = y$.
+\end{proof}
+
+\begin{prob}
+Demuestra que si $f\colon A \to B$ tiene una inversa derecha~$h$, entonces $f$ es !!{sobreyectiva}.
+\end{prob}
+
+\begin{explain}
+Combinando las ideas de la prueba anterior, ahora obtenemos que cada !!{biyección} tiene una inversa, es decir, existe una única función que es tanto una inversa izquierda como derecha de~$f$.
+\end{explain}
+
+\begin{prop}\ollabel{prop:bijection-inverse}
+Si $f\colon A \to B$ es !!{biyectiva}, existe una función~$f^{-1}\colon B \to A$ tal que para todo $x \in A$, $f^{-1}(f(x)) = x$ y para todo $y \in B$, $f(f^{-1}(y)) = y$.
+\end{prop}
+
+\begin{proof}
+Ejercicio.
+\end{proof}
+
+\begin{prob}
+Prueba \olref[sfr][fun][inv]{prop:bijection-inverse}. Tienes que definir~$f^{-1}$, mostrar que es una función, y mostrar que es una inversa de~$f$, es decir, $f^{-1}(f(x)) = x$ y $f(f^{-1}(y)) = y$ para todo $x \in A$ e $y \in B$.
+\end{prob}
+
+\begin{explain}
+Hay una forma ligeramente más general de extraer inversas. Vimos en \olref[kin]{sec} que cada función $f$ induce !!una{sobreyección} $f' \colon A \to \ran{f}$ al dejar $f'(x) = f(x)$ para todo $x \in A$. Claramente, si $f$ es !!{inyectiva}, entonces $f'$ es !!{biyectiva}, por lo que tiene una inversa única por \olref{prop:bijection-inverse}. Por un abuso de notación muy menor, a veces llamamos a la inversa de $f'$ simplemente "la inversa de~$f$".
+\end{explain}
+
+\begin{prop}\ollabel{prop:left-right}
+Demuestra que si $f\colon A \to B$ tiene una inversa izquierda~$g$ y una inversa derecha~$h$, entonces $h = g$.
+\end{prop}
+
+\begin{proof}
+Ejercicio.
+\end{proof}
+
+\begin{prob}
+Prueba \olref[sfr][fun][inv]{prop:left-right}.
+\end{prob}
+
+\begin{prop}\ollabel{prop:inverse-unique}
+Cada función~$f$ tiene como máximo una inversa.
+\end{prop}
+
+\begin{proof}
+Supongamos que $g$ y $h$ son ambas inversas de~$f$. Entonces, en particular, $g$ es una inversa izquierda de~$f$ y $h$ es una inversa derecha. Por \olref{prop:left-right}, $g = h$.
+\end{proof}
+
+\end{document}

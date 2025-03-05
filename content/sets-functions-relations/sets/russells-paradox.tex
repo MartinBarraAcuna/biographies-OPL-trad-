@@ -1,0 +1,56 @@
+% Part: sets-functions-relations
+% Chapter: sets
+% Section: russells-paradox
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+
+\begin{document}
+
+\olfileid{sfr}{set}{rus}
+\section{La Paradoja de Russell}
+
+La extensionalidad justifica la notación $\Setabs{x}{\phi(x)}$, para \emph{el} conjunto de $x$'s tales que~$\phi(x)$. Sin embargo, todo lo que la extensionalidad \emph{realmente} justifica es el siguiente pensamiento. \emph{Si} existe un conjunto cuyos miembros son todos y solo los $\phi$'s, \emph{entonces} solo hay un conjunto de este tipo. Dicho de otra manera: habiendo fijado algún~$\phi$, el conjunto $\Setabs{x}{\phi(x)}$ es único, \emph{si existe}.
+
+¡Pero esta condicional es importante!{} Crucialmente, no toda propiedad se presta a la \emph{comprensión}. Es decir, algunas propiedades \emph{no} definen conjuntos. Si todas lo hicieran, entonces caeríamos en contradicciones absolutas. El ejemplo más famoso de esto es la Paradoja de Russell.
+
+Los conjuntos pueden ser \emph{elementos} de otros conjuntos; por ejemplo, el conjunto potencia de un conjunto~$A$ está formado por conjuntos. Y así tiene sentido preguntar o investigar si un conjunto es !!un{elemento} de otro conjunto. ¿Puede un conjunto ser miembro de sí mismo? Nada sobre la idea de un conjunto parece descartar esto. Por ejemplo, si \emph{todos} los conjuntos forman una colección de objetos, uno podría pensar que se pueden reunir en un solo conjunto: el conjunto de todos los conjuntos. Y este, siendo un conjunto, sería !!un{elemento} del conjunto de todos los conjuntos.
+
+La Paradoja de Russell surge cuando consideramos la propiedad de no tenerse
+a sí mismo como !!un{elemento}, de ser \emph{no auto-miembro}. ¿Qué pasa si
+suponemos que existe un conjunto de todos los conjuntos que no se tienen a sí mismos
+como !!un{elemento}? ¿Existe
+\[
+R = \Setabs{x}{x \notin x}
+\]?
+Resulta que podemos probar que no existe.
+
+\begin{thm}[La Paradoja de Russell]\label{thm:russells-paradox}
+	No existe un conjunto $R = \Setabs{x}{x \notin x}$.
+\end{thm}
+
+\begin{proof}
+Si $R = \Setabs{x}{x \notin x}$ existe, entonces
+$R \in R$ si y solo si $R \notin R$, lo cual es una contradicción.
+\end{proof}
+
+\begin{tagblock}{novice}
+\begin{explain}
+Repasemos esta prueba más lentamente. Si $R$ existe, tiene sentido preguntar si $R \in
+R$ o no. Supongamos que, en efecto, $R \in R$. Ahora, $R$ se definió como el conjunto de todos los
+conjuntos que no son elementos de sí mismos. Entonces, si $R \in R$, entonces $R$ mismo no tiene la propiedad definitoria de $R$. Pero solo los conjuntos que tienen esta propiedad están en~$R$, por lo tanto, $R$ no puede ser !!un{elemento} de~$R$, es decir, $R \notin R$. Pero $R$ no puede ser y no ser !!un{elemento} de~$R$, así que tenemos una contradicción.
+
+Dado que la suposición de que $R \in R$ conduce a una contradicción, tenemos $R \notin R$. ¡Pero esto también conduce a una contradicción!{} Porque si $R \notin R$, entonces $R$ mismo sí tiene la propiedad definitoria de $R$, y entonces $R$ sería !!un{elemento} de $R$ al igual que todos los demás conjuntos no auto-miembros. Y de nuevo, no puede ser y no ser !!un{elemento} de~$R$.
+\end{explain}
+\end{tagblock}
+
+\begin{digress}
+¿Cómo configuramos una teoría de conjuntos que evite caer en
+la Paradoja de Russell, es decir, que evite hacer la afirmación
+\emph{inconsistente} de que $R = \Setabs{x}{x \notin x}$ existe? Bueno, necesitaríamos establecer axiomas que nos den condiciones muy precisas para afirmar cuándo
+existen conjuntos (y cuándo no).
+	
+La teoría de conjuntos esbozada en este capítulo no hace esto. Es
+\emph{genuinamente ingenua}. Solo te dice que los conjuntos obedecen la extensionalidad y que, si tienes algunos conjuntos, puedes formar su unión, intersección, etc. Es posible desarrollar la teoría de conjuntos más rigurosamente que esto. \oliflabeldef{cumul:::part}{Ese rigor se reservará para la Parte \olref[cumul][][]{part}. Por ahora, procederemos ingenuamente y trataremos cuidadosamente de eludir las contradicciones.}{}
+\end{digress}
+\end{document}

@@ -1,0 +1,58 @@
+% Part: sets-functions-relations
+% Chapter: sets
+% Section: important-sets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{sfr}{set}{imp}
+\olsection{Algunos conjuntos importantes}
+
+\begin{ex}
+Principalmente trataremos con conjuntos cuyos !!{elementos} son
+objetos matemáticos. Cuatro de estos conjuntos son lo suficientemente
+importantes como para tener nombres específicos:
+\begin{multline*}
+  \Nat = \{0, 1, 2, 3, \ldots\} \\
+  \shoveright{\text{el conjunto de los números naturales}}\\
+  \shoveleft{\Int = \{\ldots, -2, -1, 0, 1, 2, \ldots\}} \\
+  \shoveright{\text{el conjunto de los números enteros}}\\
+  \shoveleft{\Rat = \Setabs{\nicefrac{m}{n}}{m, n \in \Int\text{ y }n \neq 0}}\\
+  \shoveright{\text{el conjunto de los números racionales}}\\
+  \shoveleft{\Real = (-\infty, \infty)}\\
+  \text{el conjunto de los números reales (el continuo)}
+\end{multline*}
+Todos estos son conjuntos \emph{infinitos}, es decir, cada uno tiene
+infinitamente muchos !!{elementos}.
+
+A medida que avanzamos a través de estos conjuntos, estamos añadiendo
+\emph{más} números a nuestro repertorio. De hecho, debería ser claro que $\Nat \subseteq \Int
+\subseteq \Rat \subseteq \Real$: después de todo, cada número natural es un
+entero; cada entero es un racional; y cada racional es un real. Igualmente, debería ser claro que $\Nat \subsetneq \Int \subsetneq
+\Rat$, ya que $-1$ es un entero pero no un número natural, y
+$\nicefrac{1}{2}$ es racional pero no entero. Es menos obvio
+que $\Rat \subsetneq \Real$, es decir, que hay algunos números reales que no son racionales\oliflabeldef{sfr:arith:real:realline}{, pero volveremos a esto en \olref[arith][real]{realline}}{}.
+
+A veces también usaremos el conjunto de los enteros positivos $\PosInt = \{1,
+2, 3, \dots\}$ y el conjunto que contiene solo los dos primeros números naturales $\Bin = \{0, 1\}$.
+\end{ex}
+
+\begin{tagblock}{compsci}
+\begin{ex}[Cadenas]
+Otro ejemplo interesante es el conjunto $A^{*}$ de \emph{cadenas finitas} sobre un alfabeto $A$: cualquier secuencia finita de elementos de~$A$ es una cadena sobre $A$. Incluimos la \emph{cadena vacía $\Lambda$} entre las cadenas sobre~$A$, para cada alfabeto~$A$. Por ejemplo,
+\begin{multline*}
+\Bin^*
+=\{\Lambda,0,1,00,01,10,11,\\
+000,001,010,011,100,101,110,111,0000,\ldots\}.
+\end{multline*}
+Si $x=x_{1}\ldots x_{n}\in A^{*}$ es una cadena que consta de $n$
+"letras" de $A$, entonces decimos que la \emph{longitud} de la cadena es~$n$ y escribimos $\len{x}=n$.
+\end{ex}
+\end{tagblock}
+
+\begin{ex}[Secuencias infinitas]
+Para cualquier conjunto $A$ también podemos considerar el conjunto~$A^\omega$ de secuencias infinitas de !!{elementos} de~$A$. Una secuencia infinita $a_1a_2a_3a_4\dots$ consiste en una lista infinita unidireccional de objetos, cada uno de los cuales es !!un{elemento} de~$A$.
+\end{ex}
+
+\end{document}
