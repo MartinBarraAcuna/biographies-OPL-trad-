@@ -1,0 +1,84 @@
+% Part: first-order-logic
+% Chapter: model-theory
+% Section: isomorphism
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{mod}{bas}{iso}
+\olsection{Estructuras isomórficas}
+
+Las !!{estructuras} de primer orden pueden ser similares de dos maneras. Una manera en la que pueden ser similares es que hacen verdaderas las mismas !!{oraciones}. Llamamos a tales !!{estructuras} \emph{elementalmente equivalentes}. Pero las estructuras pueden ser muy diferentes y aún hacer verdaderas las mismas !!{oraciones}---por ejemplo, una puede ser !!{enumerable} y la otra no. Esto se debe a que hay muchas características de una !!{estructura} que no se pueden expresar en lenguajes de primer orden, ya sea porque el lenguaje no es lo suficientemente rico, o debido a limitaciones fundamentales de la lógica de primer orden, como el teorema de L\"owenheim--Skolem. Por lo tanto, otro aspecto más estricto en el que las !!{estructuras} pueden ser similares es si son fundamentalmente las mismas, en el sentido de que solo difieren en los objetos que las componen, pero no en sus características estructurales. Una forma de precisar esto es mediante la noción de \emph{isomorfismo}.
+
+\begin{defn}
+\ollabel{defn:elem-equiv}
+Dadas dos !!{estructuras} $\Struct{M}$ y $\Struct M'$ para el mismo !!{lenguaje}~$\Lang{L}$, decimos que $\Struct{M}$ es \emph{elementalmente equivalente a} $\Struct M'$, escrito $\Struct{M} \equiv \Struct M'$, si y solo si para cada !!{oración}~$!A$ de~$\Lang{L}$, $\Sat{M}{!A}$ si y solo si $\Sat{M'}{!A}$.
+\end{defn}
+
+\begin{defn}
+\ollabel{defn:isomorphism} Dadas dos !!{estructuras} $\Struct{M}$ y $\Struct M'$ para el mismo !!{lenguaje}~$\Lang L$, decimos que $\Struct{M}$ es \emph{isomorfa a}~$\Struct M'$, escrito $\Struct{M} \simeq \Struct M'$, si y solo si existe una función $h \colon \Domain{M} \to \Domain{M'}$ tal que:
+\begin{enumerate}
+\item $h$ es !!{inyectiva}: si $h(x) = h(y)$ entonces $x = y$;
+\item $h$ es !!{sobreyectiva}: para cada $y \in \Domain{M'}$ existe $x \in \Domain{M}$ tal que $h(x) = y$;
+\item \ollabel{defn:iso-const}para cada !!{constante} $c$: $h(\Assign{c}{M}) = \Assign{c}{M'}$;
+\item \ollabel{defn:iso-pred}para cada !!{predicado}~$P$ de $n$ lugares:
+\[
+\tuple{a_1, \dots, a_n}\in \Assign{P}{M} \quad\text{si y solo si}\quad \tuple{h(a_1), \dots, h(a_n)} \in \Assign{P}{M'};
+\]
+\item \ollabel{defn:iso-func}para cada !!{función} $f$ de $n$ lugares:
+\[
+h(\Assign{f}{M}(a_1, \dots, a_n)) = \Assign{f}{M'}(h(a_1), \dots, h(a_n)).
+\]
+\end{enumerate}
+\end{defn}
+
+\begin{thm}
+\ollabel{thm:isom}
+Si $\Struct{M} \iso \Struct M'$ entonces $\Struct{M} \elemequiv \Struct{M'}$.
+\end{thm}
+
+\begin{proof}
+Sea $h$ un isomorfismo de $\Struct{M}$ sobre $\Struct M'$. Para cualquier asignación~$s$, $h \circ s$ es la composición de $h$ y $s$, es decir, la asignación en $\Struct{M'}$ tal que $(h \circ s)(x) = h(s(x))$. Por inducción sobre $t$ y $!A$ se pueden demostrar las afirmaciones más fuertes:
+\begin{enumerate}
+  \item[a.] $h(\Value{t}{M}[s]) = \Value{t}{M'}[h\circ s]$.
+  \item[b.] $\Sat{M}{!A}[s]$ si y solo si $\Sat{M'}{!A}[h \circ s]$.
+\end{enumerate}
+La primera se demuestra por inducción sobre la complejidad de~$t$.
+\begin{enumerate}
+\item Si $t \ident c$, entonces $\Value{c}{M}[s] = \Assign{c}{M}$ y $\Value{c}{M'}[h \circ s] = \Assign{c}{M'}$. Por lo tanto, $h(\Value{t}{M}[s]) = h(\Assign{c}{M}) = \Assign{c}{M'}$ (por \olref{defn:iso-const} de \olref{defn:isomorphism}) $= \Value{t}{M'}[h \circ s]$.
+\item Si $t \ident x$, entonces $\Value{x}{M}[s] = s(x)$ y $\Value{x}{M'}[h \circ s] = h(s(x))$. Por lo tanto, $h(\Value{x}{M}[s]) = h(s(x)) = \Value{x}{M'}[h \circ s]$.
+\item Si $t \ident f(t_1, \dots, t_n)$, entonces
+\begin{align*}
+\Value{t}{M}[s] & = \Assign{f}{M}(\Value{t_1}{M}[s], \dots, \Value{t_n}{M}[s]) \quad\text{y}\\
+\Value{t}{M'}[h \circ s] & = \Assign{f}{M}(\Value{t_1}{M'}[h \circ s], \dots, \Value{t_n}{M'}[h \circ s]).
+\end{align*}
+La hipótesis de inducción es que para cada $i$, $h(\Value{t_i}{M}[s]) = \Value{t_i}{M'}[h\circ s]$. Entonces,
+\begin{align}
+h(\Value{t}{M}[s])
+& = h(\Assign{f}{M}(\Value{t_1}{M}[s], \dots, \Value{t_n}{M}[s]) \notag\\
+& = h(\Assign{f}{M}(\Value{t_1}{M'}[h \circ s], \dots, \Value{t_n}{M'}[h \circ s]) \ollabel{iso-1}\\
+& = \Assign{f}{M'}(\Value{t_1}{M'}[h \circ s], \dots, \Value{t_n}{M'}[h \circ s]) \ollabel{iso-2}\\
+& = \Value{t}{M'}[h\circ s] \notag
+\end{align}
+Aquí, \olref{iso-1} se sigue por la hipótesis de inducción y \olref{iso-2} por \olref{defn:iso-func} de \olref{defn:isomorphism}.
+\end{enumerate}
+La parte (b) se deja como ejercicio.
+
+Si $!A$ es una oración, las asignaciones~$s$ y $h \circ s$ son irrelevantes, y tenemos $\Sat{M}{!A}$ si y solo si $\Sat{M'}{!A}$.
+\end{proof}
+
+\begin{prob}
+Lleve a cabo la demostración de (b) de \olref[mod][bas][iso]{thm:isom} en detalle. Asegúrese de notar dónde se utiliza cada una de las cinco propiedades que caracterizan los isomorfismos de \olref[mod][bas][iso]{defn:isomorphism}.
+\end{prob}
+
+\begin{defn}
+Un \emph{automorfismo} de una estructura $\mathfrak{M}$ es un isomorfismo de $\mathfrak{M}$ sobre sí misma.
+\end{defn}
+
+\begin{prob}
+Muestre que para cualquier estructura $\Struct{M}$, si $X$ es un subconjunto definible de $\Struct{M}$, y $h$ es un automorfismo de $\Struct{M}$, entonces $X = \Setabs{h(x)}{x \in X}$ (es decir, $X$ se mantiene fijo bajo $h$).
+\end{prob}
+
+
+\end{document}

@@ -1,0 +1,114 @@
+% Part: first-order-logic
+% Chapter: model-theory
+% Section: partial-iso
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{mod}{bas}{pis}
+\section{Isomorfismos Parciales}
+
+\begin{defn}
+  Dadas dos !!{estructuras} $\Struct{M}$ y $\Struct{N}$, un \emph{isomorfismo parcial} de $\Struct{M}$ a $\Struct{N}$ es una función parcial finita $p$ que toma argumentos en $\Domain M$ y devuelve valores en $\Domain N$, que satisface las condiciones de isomorfismo de \olref[iso]{defn:isomorphism} en su dominio:
+  \begin{enumerate}
+  \item $p$ es !!{inyectiva};
+  \item para cada !!{constante}~$c$: si $p(\Assign{c}{M})$ está definido, entonces $p(\Assign{c}{M}) = \Assign{c}{N}$;
+  \item para cada !!{predicado} $P$ de $n$ lugares: si $a_1$, \dots, $a_n$ están en el dominio de $p$, entonces $\langle a_1, \dots, a_n\rangle \in \Assign P M$ si y solo si $\langle p(a_1), \dots, p(a_n) \rangle \in \Assign P N$;
+  \item para cada !!{función} $f$ de $n$ lugares: si $a_1$, \dots, $a_n$ están en el dominio de $p$, entonces $p(\Assign f M (a_1, \dots,a_n)) = \Assign f N (p(a_1), \dots, p(a_n))$.
+  \end{enumerate}
+  Que $p$ sea finita significa que $\dom{p}$ es finito.
+\end{defn}
+
+Nótese que la función vacía~$\emptyset$ es siempre un isomorfismo parcial entre dos !!{estructuras} cualesquiera.
+
+\begin{defn}\ollabel{defn:partialisom}
+  Dos !!{estructuras} $\Struct{M}$ y $\Struct{N}$ son \emph{parcialmente isomorfas}, escrito $\Struct{M} \iso[p] \Struct{N}$, si y solo si existe un conjunto no vacío $I$ de isomorfismos parciales entre $\Struct{M}$ y $\Struct{N}$ que satisface la propiedad de \emph{ida y vuelta}:
+  \begin{enumerate}
+  \item (\emph{Ida}) Para cada $p \in I$ y $a \in \Domain M$ existe $q \in I$ tal que $p \subseteq q$ y $a$ está en el dominio de $q$;
+  \item (\emph{Vuelta}) Para cada $p \in I$ y $b \in \Domain N$ existe $q \in I$ tal que $p \subseteq q$ y $b$ está en el rango de $q$.
+  \end{enumerate}
+\end{defn}
+
+\begin{thm}\ollabel{thm:p-isom1}
+  Si $\Struct{M} \iso[p] \Struct{N}$ y $\Struct{M}$ y $\Struct{N}$ son !!{enumerables}, entonces $\Struct{M} \iso \Struct{N}$.
+\end{thm}
+
+\begin{proof}
+  Dado que $\Struct{M}$ y $\Struct{N}$ son !!{enumerables}, sea $\Domain{M} = \{a_0, a_1, \ldots \}$ y $\Domain{N} = \{b_0, b_1, \ldots \}$. Comenzando con un $p_0 \in I$ arbitrario, definimos una secuencia creciente de isomorfismos parciales $p_0 \subseteq p_1 \subseteq p_2 \subseteq \cdots$ de la siguiente manera:
+  \begin{enumerate}
+  \item si $n+1$ es impar, digamos $n = 2r$, entonces usando la propiedad de Ida, encontramos un $p_{n+1} \in I$ tal que $p_n \subseteq p_{n+1}$ y $a_r$ está en el dominio de $p_{n+1}$;
+  \item si $n+1$ es par, digamos $n+1 =2r$, entonces usando la propiedad de Vuelta, encontramos un $p_{n+1} \in I$ tal que $p_n \subseteq p_{n+1}$ y $b_r$ está en el rango de $p_{n+1}$.
+  \end{enumerate}
+Si ahora ponemos:
+\[
+p = \bigcup_{n\ge 0} p_n,
+\]
+tenemos que $p$ es un isomorfismo entre $\Struct{M}$ y $\Struct{N}$.
+\end{proof}
+
+\begin{prob}
+  Muestre en detalle que $p$ como se define en \olref[mod][bas][pis]{thm:p-isom1} es de hecho un isomorfismo.
+\end{prob}
+
+\begin{thm}\ollabel{thm:p-isom2}
+  Supongamos que $\Struct{M}$ y $\Struct{N}$ son !!{estructuras} para un !!{lenguaje} puramente relacional (un !!{lenguaje} que contiene solo !!{predicados} y no !!{funciones} ni constantes). Entonces, si $\Struct{M} \iso[p] \Struct{N}$, también $\Struct{M} \elemequiv \Struct{N}$.
+\end{thm}
+
+\begin{proof}
+  Por inducción sobre !!{fórmulas}, se muestra que si $a_1$, \dots, $a_n$ y $b_1$, \dots, $b_n$ son tales que existe un isomorfismo parcial $p$ que mapea cada $a_i$ a $b_i$ y $s_1(x_i) =a_i$ y $s_2(x_i) =b_i$ (para $i =1$, \dots,~$n$), entonces $\Sat{M}{!A}[s_1]$ si y solo si $\Sat{N}{!A}[s_2]$. El caso para $n=0$ da $\Struct{M} \elemequiv \Struct{N}$.
+\end{proof}
+
+\begin{rem}
+Si hay !!{funciones} presentes, el resultado anterior sigue siendo cierto, pero es necesario considerar el isomorfismo inducido por $p$ entre la sub!!{estructura} de $\Struct{M}$ generada por $a_1$, \dots, $a_n$ y la sub!!{estructura} de $\Struct{N}$ generada por $b_1$, \dots, $b_n$.
+\end{rem}
+
+El resultado anterior se puede "desglosar" en etapas estableciendo una conexión entre el número de cuantificadores anidados en una !!{fórmula} y cuántas veces se pueden extender los isomorfismos parciales relevantes.
+
+\begin{defn}
+  Para cualquier !!{fórmula}~$!A$, el \emph{rango de cuantificadores} de $!A$, denotado por $\QuantRank{!A} \in \Nat$, se define recursivamente como el número más alto de cuantificadores anidados en $!A$. Dos !!{estructuras} $\Struct{M}$ y $\Struct{N}$ son \emph{$n$-equivalentes}, escrito $\Struct{M} \elemequiv[n] \Struct{N}$, si concuerdan en todas las oraciones de rango de cuantificadores menor o igual a~$n$.
+\end{defn}
+
+\begin{prop}\ollabel{prop:qr-finite}
+  Sea $\Lang{L}$ un !!{lenguaje} puramente relacional finito, es decir, un !!{lenguaje} que contiene finitamente muchos !!{predicados} y !!{constantes}, y ninguna !!{función}. Entonces, para cada $n \in \Nat$, solo hay finitamente muchas !!{oraciones} de primer orden en el !!{lenguaje} $\Lang{L}$ que tienen un rango de cuantificadores no mayor que $n$, salvo equivalencia lógica.
+\end{prop}
+
+\begin{proof}
+  Por inducción sobre $n$.
+\end{proof}
+
+\begin{defn}
+  Dada una !!{estructura}~$\Struct{M}$, sea $\Domain M^{<\omega}$ el conjunto de todas las secuencias finitas sobre $\Domain{M}$. Usamos $\mathbf{a}, \mathbf{b}, \mathbf{c}, \ldots$ para denotar secuencias finitas de elementos. Si $\mathbf{a} \in \Domain{M}^{<\omega}$ y $a \in \Domain{M}$, entonces $\mathbf{a}a$ representa la \emph{concatenación} de $\mathbf{a}$ con $a$.
+\end{defn}
+
+\begin{defn}
+  Dadas !!{estructuras} $\Struct{M}$ y $\Struct{N}$, definimos relaciones $I_n \subseteq \Domain M^{<\omega} \times \Domain N^{<\omega}$ entre secuencias de igual longitud, por recursión sobre $n$ de la siguiente manera:
+  \begin{enumerate}
+  \item $I_0(\mathbf{a},\mathbf{b})$ si y solo si $\mathbf{a}$ y $\mathbf{b}$ satisfacen las mismas !!{fórmulas} atómicas en $\Struct{M}$ y $\Struct{N}$; es decir, si $s_1(x_i) = a_i$ y $s_2(x_i) = b_i$ y $!A$ es atómica con todas las !!{variables} entre $x_1$, \dots,~$x_n$, entonces $\Sat{M}{!A}[s_1]$ si y solo si~$\Sat{N}{!A}[s_2]$.
+  \item $I_{n+1} (\mathbf{a},\mathbf{b})$ si y solo si para cada $a\in A$ existe un $b\in B$ tal que $I_n (\mathbf{a}a,\mathbf{b}b)$, y viceversa.
+  \end{enumerate}
+\end{defn}
+
+\begin{defn}
+  Escribimos $\Struct{M} \approx_n \Struct{N}$ si $I_n(\emptyseq,\emptyseq)$ se cumple de $\Struct{M}$ y $\Struct{N}$ (donde $\emptyseq$ es la secuencia vacía).
+\end{defn}
+
+\begin{thm}\ollabel{thm:b-n-f}
+  Sea $\Lang{L}$ un !!{lenguaje} puramente relacional. Entonces $I_n (\mathbf{a},\mathbf{b})$ implica que para cada $!A$ tal que $\QuantRank{!A} \le n$, tenemos $\Sat{M}{!A}[\mathbf{a}]$ si y solo si $\Sat{N}{!A}[\mathbf{b}]$ (donde nuevamente $\mathbf{a}$ satisface $!A$ si cualquier $s$ tal que $s(x_i) = a_i$ satisface $!A$). Además, si $\Lang{L}$ es finito, el recíproco también se cumple.
+\end{thm}
+
+\begin{proof}
+  La prueba de que $I_n(\mathbf{a},\mathbf{b})$ implica que $\mathbf{a}$ y $\mathbf{b}$ satisfacen las mismas !!{fórmulas} de rango de cuantificadores no mayor que $n$ se realiza mediante una inducción fácil sobre $!A$. Para el recíproco, procedemos por inducción sobre $n$, utilizando \olref{prop:qr-finite}, que asegura que para cada $n$ hay a lo sumo finitamente muchas !!{fórmulas} no equivalentes de ese rango de cuantificadores.
+
+  Para $n=0$, la hipótesis de que $\mathbf{a}$ y $\mathbf{b}$ satisfacen las mismas !!{fórmulas} libres de cuantificadores da que satisfacen las mismas atómicas, de modo que $I_0(\mathbf{a},\mathbf{b})$.
+
+  Para el caso $n+1$, supongamos que $\mathbf{a}$ y $\mathbf{b}$ satisfacen las mismas !!{fórmulas} de rango de cuantificadores no mayor que $n+1$; para mostrar que $I_{n+1}(\mathbf{a},\mathbf{b})$, basta mostrar que para cada $a \in \Domain M$ existe un $b \in \Domain N$ tal que $I_n(\mathbf{a}a,\mathbf{b}b)$, y por la hipótesis inductiva, nuevamente basta mostrar que para cada $a \in \Domain M$ existe un $b \in \Domain N$ tal que $\mathbf{a}a$ y $\mathbf{b}b$ satisfacen las mismas !!{fórmulas} de rango de cuantificadores no mayor que $n$.
+
+  Dado $a \in \Domain M$, sea $!T^a_n$ el conjunto de !!{fórmulas} $!B(x,\mathbf{y})$ de rango no mayor que $n$ satisfechas por $\mathbf{a}a$ en $\Struct{M}$; $\tau^a_n$ es finito, por lo que podemos suponer que es una única !!{fórmula} de primer orden. Se sigue que $\mathbf{a}$ satisface $\lexists[x][!T^a_n(x,\mathbf{y})]$, que tiene un rango de cuantificadores no mayor que $n+1$. Por hipótesis, $\mathbf{b}$ satisface la misma !!{fórmula} en $\Struct{N}$, de modo que existe un $b \in \Domain N$ tal que $\mathbf{b}b$ satisface $!T^a_n$; en particular, $\mathbf{b}b$ satisface las mismas !!{fórmulas} de rango de cuantificadores no mayor que $n$ que $\mathbf{a}a$. De manera similar, se muestra que para cada $b \in \Domain N$ existe $a\in \Domain M$ tal que $\mathbf{a}a$ y $\mathbf{b}b$ satisfacen las mismas !!{fórmulas} de rango de cuantificadores no mayor que $n$, lo que completa la prueba.
+\end{proof}
+
+\begin{cor}\ollabel{cor:b-n-f}
+  Si $\Struct{M}$ y $\Struct{N}$ son !!{estructuras} puramente relacionales en un !!{lenguaje} finito, entonces $\Struct{M} \approx_n\Struct{N}$ si y solo si $\Struct{M} \elemequiv[n] \Struct{N}$. En particular, $\Struct{M} \elemequiv \Struct{N}$ si y solo si para cada $n$, $\Struct{M} \approx_n \Struct{N}$ .
+\end{cor}
+
+\end{document}

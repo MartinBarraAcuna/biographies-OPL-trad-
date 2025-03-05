@@ -1,0 +1,44 @@
+% Part: first-order-logic
+% Chapter: model-theory
+% Section: partial-iso
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{mod}{bas}{dlo}
+\section{Órdenes Lineales Densos}
+
+\begin{defn}
+  Un \emph{ordenamiento lineal denso sin puntos finales} es una !!{estructura} $\Struct{M}$ para el !!{lenguaje} que contiene un único !!{predicado}~$<$ de 2 lugares que satisface las siguientes oraciones:
+  \begin{enumerate}
+  \item $\lforall[x][\lnot x < x]$;
+  \item $\lforall[x][\lforall[y][\lforall[z][(x < y \lif (y < z \lif x <z ))]]]$;
+  \item $\lforall[x][\lforall[y][(x< y \lor \eq[x][y] \lor y < x)]]$;
+  \item $\lforall[x][\lexists[y][x < y]]$;
+  \item $\lforall[x][\lexists[y][y < x]]$;
+  \item $\lforall[x][\lforall[y][(x < y \lif \lexists[z][(x < z \land z < y))]]]$.
+  \end{enumerate}
+\end{defn}
+
+\begin{thm}\ollabel{thm:cantorQ}
+  Cualesquiera dos ordenamientos lineales densos !!{enumerables} sin puntos finales son isomorfos.
+\end{thm}
+
+\begin{proof}
+  Sean $\Struct{M_1}$ y $\Struct{M_2}$ ordenamientos lineales densos !!{enumerables} sin puntos finales, con ${<_1} = \Assign{<}{M_1}$ y ${<_2} = \Assign{<}{M_2}$, y sea $\PIso{I}$ el conjunto de todos los isomorfismos parciales entre ellos. $\PIso{I}$ no está vacío ya que al menos $\emptyset \in \PIso{I}$. Mostramos que $\PIso{I}$ satisface la propiedad de Ida y Vuelta. Entonces $\Struct{M_1} \iso[p] \Struct{M_2}$, y el teorema se sigue por \olref[pis]{thm:p-isom1}.
+
+  Para mostrar que $\PIso{I}$ satisface la propiedad de Ida, sea $p \in \PIso{I}$ y sea $p(a_i) = b_i$ para $i = 1$, \dots,~$n$, y sin pérdida de generalidad supongamos $a_1 <_1 a_2 <_1 \cdots <_1 a_n$. Dado $a \in \Domain{M_1}$, encontramos $b \in \Domain{M_2}$ de la siguiente manera:
+  \begin{enumerate}
+  \item si $a <_2 a_1$, sea $b \in \Domain{M_2}$ tal que $b <_2 b_1$;
+  \item si $a_n <_1 a$, sea $b \in \Domain{M_2}$ tal que $b_n <_2 b$;
+  \item si $a_i <_1 a <_1 a_{i+1}$ para algún $i$, entonces sea $b \in \Domain{M_2}$ tal que $b_i <_2 b <_2 b_{i+1}$.
+  \end{enumerate}
+  Siempre es posible encontrar un $b$ con la propiedad deseada ya que $\Struct{M_2}$ es un ordenamiento lineal denso sin puntos finales. Definimos $q = p \cup \{ \langle a, b \rangle \}$ de modo que $q \in \PIso{I}$ es la extensión deseada de $p$. Esto establece la propiedad de Ida. La propiedad de Vuelta es similar. Entonces $\Struct{M_1} \iso[p] \Struct{M_2}$; por \olref[pis]{thm:p-isom1}, $\Struct{M_1} \iso \Struct{M_2}$.
+\end{proof}
+
+\begin{rem}
+  Sea $\Struct{S}$ cualquier ordenamiento lineal denso !!{enumerable} sin puntos finales. Entonces %(por \olref{thm:cantorQ}) 
+  $\Struct{S} \iso \Struct{Q}$, donde $\Struct{Q} = (\Rat, <)$ es el ordenamiento lineal denso !!{enumerable} que tiene el conjunto $\Rat$ de los números racionales como su dominio. Ahora considere nuevamente la !!{estructura}~$\Struct{R} = (\Real, <)$ de \olref[thm]{remark:R}. Vimos que hay una !!{estructura} !!{enumerable}~$\Struct{S}$ tal que $\Struct{R} \elemequiv \Struct{S}$. Pero $\Struct{S}$ es un ordenamiento lineal denso !!{enumerable} sin puntos finales, y por lo tanto es isomorfo (y por lo tanto elementalmente equivalente) a la !!{estructura}~$\Struct{Q}$. Por transitividad de la equivalencia elemental, $\Struct{R} \elemequiv \Struct{Q}$. (Podríamos haber mostrado esto directamente estableciendo $\Struct{R} \iso[p] \Struct{Q}$ mediante el mismo argumento de ida y vuelta.)
+\end{rem}
+\end{document}

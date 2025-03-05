@@ -1,0 +1,67 @@
+% Part: first-order-logic
+% Chapter: model-theory
+% Section: reducts-and-expansions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{mod}{bas}{red}
+\section{Reductos y Expansiones}
+
+A menudo es útil o necesario comparar lenguajes que tienen
+símbolos en común, así como !!{estructuras} para estos lenguajes. El
+caso más común es cuando todos los símbolos en !!un{lenguaje}~$\Lang{L}$
+también son parte de !!un{lenguaje}~$\Lang{L'}$, es decir, $\Lang{L} \subseteq
+\Lang{L'}$. Una $\Lang{L}$-!!{estructura}~$\Struct{M}$ siempre puede
+ser expandida a una $\Lang{L'}$-!!{estructura} añadiendo interpretaciones
+de los símbolos adicionales, dejando las interpretaciones de los
+símbolos comunes iguales. Por otro lado, de una
+$\Lang{L'}$-estructura~$\Struct{M'}$ podemos obtener una
+$\Lang{L}$-estructura simplemente "olvidando" las interpretaciones de
+los símbolos que no ocurren en~$\Lang{L}$.
+
+\begin{defn}
+\ollabel{defn:reduct}
+Supongamos que $\Lang L \subseteq \Lang L'$, $\Struct M$ es una
+$\Lang L$-!!{estructura} y $\Struct M'$ es una $\Lang L'$-!!{estructura}.
+$\Struct M$ es el \emph{reducto} de $\Struct M'$ a $\Lang L$, y
+$\Struct M'$ es una \emph{expansión} de $\Struct M$ a $\Lang L'$ si y solo si
+\begin{enumerate}
+\item $\Domain{M} = \Domain{M'}$
+\item Para cada !!{constante}~$c \in \Lang L$, $\Assign{c}{M} =
+  \Assign{c}{M'}$.
+\item Para cada !!{función}~$f \in \Lang L$, $\Assign{f}{M} =
+  \Assign{f}{M'}$.
+\item Para cada !!{predicado}~$P \in \Lang L$, $\Assign{P}{M} =
+  \Assign{P}{M'}$.
+\end{enumerate}
+\end{defn}
+
+\begin{prop}
+\ollabel{prop:reduct}
+Si una $\Lang{L}$-!!{estructura}~$\Struct{M}$ es un reducto de una
+$\Lang{L'}$-!!{estructura}~$\Struct{M'}$, entonces para todas las
+$\Lang{L}$-!!{oraciones}~$!A$,
+\[
+\Sat{M}{!A} \text{ si y solo si } \Sat{M'}{!A}.
+\]
+\end{prop}
+
+\begin{proof}
+Ejercicio.
+\end{proof}
+
+\begin{prob}
+Demuestre \olref[mod][bas][red]{prop:reduct}.
+\end{prob}
+
+\begin{defn}
+Cuando tenemos una $\Lang{L}$-estructura $\Struct{M}$, y $\Lang{L'} =
+\Lang{L} \cup \{P\}$ es la expansión de $\Lang{L}$ obtenida añadiendo
+un solo !!{predicado}~$P$ de $n$-lugares, y $R \subseteq \Domain{M}^n$
+es una relación de $n$-lugares, entonces escribimos $\Expan{M}{R}$ para la
+expansión~$\Struct{M'}$ de~$\Struct{M}$ con $\Assign{P}{M'} = R$.
+\end{defn}
+
+\end{document}

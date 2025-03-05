@@ -1,0 +1,41 @@
+% Part: first-order-logic
+% Chapter: model-theory
+% Section: theory-of-m
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid{mod}{bas}{thm}
+
+\section{La Teoría de una estructura}
+
+Cada !!{estructura}~$\Struct{M}$ hace verdaderas algunas !!{oraciones} y falsas otras. El conjunto de todas las !!{oraciones} que hace verdaderas se llama su \emph{teoría}. Ese conjunto es, de hecho, una teoría, ya que todo lo que implica debe ser verdadero en todos sus modelos, incluyendo~$\Struct{M}$.
+
+\begin{defn}
+  Dada una !!{estructura}~$\Struct M$, la \emph{teoría} de $\Struct{M}$ es el conjunto $\Theory{M}$ de !!{oraciones} que son verdaderas en $\Struct{M}$, es decir, $\Theory{M} = \Setabs{!A}{\Sat{M}{!A}}$.
+\end{defn}
+
+También usamos el término "teoría" informalmente para referirnos a conjuntos de !!{oraciones} que tienen una interpretación intencionada, ya sean deductivamente cerrados o no.
+
+\begin{prop}
+Para cualquier $\Struct{M}$, $\Theory{M}$ es completa.
+\end{prop}
+
+\begin{proof}
+Para cualquier !!{oración}~$!A$, o bien $\Sat{M}{!A}$ o bien $\Sat{M}{\lnot !A}$, por lo que o bien $!A \in \Theory{M}$ o bien $\lnot !A \in \Theory{M}$.
+\end{proof}
+
+\begin{prop}\ollabel{prop:equiv}
+  Si $\Struct{N} \models !A$ para cada $!A \in \Theory{M}$, entonces $\Struct{M} \elemequiv \Struct{N}$.
+\end{prop}
+
+\begin{proof}
+Dado que $\Sat{N}{!A}$ para toda $!A \in \Theory{M}$, $\Theory{M} \subseteq \Theory{N}$. Si $\Sat{N}{!A}$, entonces $\Sat/{N}{\lnot !A}$, por lo que $\lnot !A \notin \Theory{M}$. Dado que $\Theory{M}$ es completa, $!A \in \Theory{M}$. Por lo tanto, $\Theory{N} \subseteq \Theory{M}$, y tenemos $\Struct{M} \elemequiv \Struct{N}$.
+\end{proof}
+
+\begin{rem}\ollabel{remark:R}
+  Considere $\Struct{R} = \langle\Real, <\rangle$, la !!{estructura} cuyo dominio es el conjunto $\Real$ de los números reales, en el !!{lenguaje} que comprende solo un !!{predicado} de 2 lugares interpretado como la relación $<$ sobre los reales. Claramente $\Struct{R}$ es !!{no enumerable}; sin embargo, dado que $\Theory{R}$ es obviamente consistente, por el teorema de L\"owenheim--Skolem tiene un modelo !!{enumerable}, digamos $\Struct{S}$, y por \olref{prop:equiv}, $\Struct{R} \equiv \Struct{S}$. Además, dado que $\Struct{R}$ y $\Struct{S}$ no son isomorfos, esto muestra que el recíproco de \olref[iso]{thm:isom} falla en general.
+\end{rem}
+
+\end{document}
